@@ -106,6 +106,12 @@ doSEQ <- function(obj, expr, envir, data) {
   for (p in obj$packages)
     library(p, character.only=TRUE)
 
+  # compile the expression if we can load the compiler package
+  xpr <- if (suppressWarnings(require('compiler', quietly=TRUE)))
+    compile(expr, env=envir, options=list(suppressUndefined=TRUE))
+  else
+    expr
+
   i <- 1
   tryCatch({
     repeat {
@@ -121,7 +127,7 @@ doSEQ <- function(obj, expr, envir, data) {
         assign(a, args[[a]], pos=envir, inherits=FALSE)
 
       # evaluate the expression
-      r <- tryCatch(eval(expr, envir=envir), error=function(e) e)
+      r <- tryCatch(eval(xpr, envir=envir), error=function(e) e)
       if (obj$verbose) {
         cat('result of evaluating expression:\n')
         print(r)

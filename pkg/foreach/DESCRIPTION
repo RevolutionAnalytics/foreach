@@ -13,4 +13,5 @@ Description: Support for the foreach looping construct.  Foreach is an
         of a function.  Using foreach without side effects also
         facilitates executing the loop in parallel.
 Depends: R (>= 2.5.0), iterators(>= 1.0.0), codetools, utils
+Suggests: compiler, randomForest
 License: Apache License (== 2.0)
