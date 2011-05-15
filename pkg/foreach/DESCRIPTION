@@ -1,7 +1,7 @@
 Package: foreach
 Type: Package
 Title: Foreach looping construct for R
-Version: 1.3.1
+Version: 1.3.2
 Author: Revolution Analytics
 Maintainer: Revolution Analytics <packages@revolutionanalytics.com>
 Description: Support for the foreach looping construct.  Foreach is an
@@ -13,5 +13,6 @@ Description: Support for the foreach looping construct.  Foreach is an
         of a function.  Using foreach without side effects also
         facilitates executing the loop in parallel.
 Depends: R (>= 2.5.0), iterators(>= 1.0.0), codetools, utils
-Suggests: compiler, randomForest
+Suggests: randomForest
+Enhances: compiler, doMC, RUnit, doSMP
 License: Apache License (== 2.0)
