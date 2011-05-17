@@ -11,7 +11,7 @@ options(showWarnCalls=TRUE)
 
 cat('Starting test at', date(), '\n')
 
-tests <- c('test.R', 'iapplyTest.R', 'isplitTest.R',
+tests <- c('basicTest.R', 'iapplyTest.R', 'isplitTest.R',
            'icountnTest.R', 'chunksizeTest.R', 'recycleTest.R')
 
 errcase <- list()
