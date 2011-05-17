@@ -95,6 +95,12 @@ getDoPar <- function() {
   e$fun(obj, substitute(ex), parent.frame(), e$data)
 }
 
+comp <- if (getRversion() < "2.13.0") {
+  function(expr, ...) expr
+} else {
+  compiler::compile
+}
+
 doSEQ <- function(obj, expr, envir, data) {
   # note that the "data" argument isn't used
   if (!inherits(obj, 'foreach'))
@@ -106,11 +112,7 @@ doSEQ <- function(obj, expr, envir, data) {
   for (p in obj$packages)
     library(p, character.only=TRUE)
 
-  # compile the expression if we can load the compiler package
-  xpr <- if (suppressWarnings(require('compiler', quietly=TRUE)))
-    compile(expr, env=envir, options=list(suppressUndefined=TRUE))
-  else
-    expr
+  xpr <- comp(expr, env=envir, options=list(suppressUndefined=TRUE))
 
   i <- 1
   tryCatch({
