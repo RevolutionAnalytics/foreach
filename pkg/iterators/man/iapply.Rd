@@ -2,8 +2,8 @@
 \alias{iapply}
 \title{Array/Apply Iterator}
 \description{
-  Returns an iterator over an array.
-  It iteratates over the array in much the same manner
+  Returns an iterator over an array, which iterates over the 
+  array in much the same manner
   as the \code{apply} function.
 }
 \usage{
