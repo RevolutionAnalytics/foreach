@@ -74,7 +74,8 @@ iter.function <- function(obj, checkFunc=function(...) TRUE,
   state$i <- 0L
   state$fun <- obj
   args <- !is.null(formals(obj))
-  it <- list(state=state, args=args, checkFunc=checkFunc)
+  it <- list(state=state, args=args, checkFunc=checkFunc, 
+             recycle=recycle)
   class(it) <- c('funiter', 'iter')
   it
 }
