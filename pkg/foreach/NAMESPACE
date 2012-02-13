@@ -1,7 +1,8 @@
 export(foreach, when, times, "%do%", "%dopar%", "%:%", registerDoSEQ,
-       getDoParRegistered, getDoParWorkers, getDoParName, getDoParVersion,
-       setDoPar, getResult, getErrorValue, getErrorIndex, accumulate,
-       makeAccum, getexports)
+       getDoSeqRegistered, getDoSeqWorkers, getDoSeqName, getDoSeqVersion,
+       setDoSeq, getDoParRegistered, getDoParWorkers, getDoParName,
+       getDoParVersion, setDoPar, getResult, getErrorValue, getErrorIndex,
+       accumulate, makeAccum, getexports)
 S3method("iter", "foreach")
 S3method("iter", "filteredforeach")
 S3method("iter", "xforeach")
