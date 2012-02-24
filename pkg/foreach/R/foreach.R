@@ -239,7 +239,7 @@ accumulate.iforeach <- function(obj, result, tag, ...) {
 
   # put the result in our buffer cache
   name <- paste('result', tag, sep='.')
-  assign(name, result, obj$state, inherit=FALSE)
+  assign(name, result, obj$state, inherits=FALSE)
   ibuf <- if (obj$combineInfo$in.order) {
     tag - obj$state$buf.off
   } else {
