@@ -23,7 +23,7 @@ if(require("RUnit", quietly=TRUE)) {
   ################################################################
   if ("doSMP" %in% row.names(installed.packages())){
 	library(doSMP)
-        w <- startWorkers()
+        w <- startWorkers(2)
         .Last <- function(){
             cat('shutting down SMP workers...\n')
             stopWorkers(w)
@@ -44,7 +44,7 @@ if(require("RUnit", quietly=TRUE)) {
 
   } else if  ("doMC" %in% row.names(installed.packages())) {
          library(doMC)
-         registerDoMC()
+         registerDoMC(2)
   } else {
 	# default to sequential
          registerDoSEQ()
