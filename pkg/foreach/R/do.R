@@ -18,9 +18,9 @@
 
 # this is called to register a parallel backend
 setDoPar <- function(fun, data=NULL, info=function(data, item) NULL) {
-  assign('parFun', fun, pos=.foreachGlobals, inherits=FALSE)
-  assign('parData', data, pos=.foreachGlobals, inherits=FALSE)
-  assign('parInfo', info, pos=.foreachGlobals, inherits=FALSE)
+  assign('fun', fun, pos=.foreachGlobals, inherits=FALSE)
+  assign('data', data, pos=.foreachGlobals, inherits=FALSE)
+  assign('info', info, pos=.foreachGlobals, inherits=FALSE)
 }
 
 # this is called to register a sequential backend
@@ -48,19 +48,19 @@ info <- function(data, item) {
 # this returns a logical value indicating if a sequential backend
 # has been registered or not
 getDoSeqRegistered <- function() {
-  exists('parFun', where=.foreachGlobals, inherits=FALSE)
+  exists('seqFun', where=.foreachGlobals, inherits=FALSE)
 }
 
 # this returns a logical value indicating if a parallel backend
 # has been registered or not
 getDoParRegistered <- function() {
-  exists('parFun', where=.foreachGlobals, inherits=FALSE)
+  exists('fun', where=.foreachGlobals, inherits=FALSE)
 }
 
 # this returns the number of workers used by the currently registered
 # sequential backend
 getDoSeqWorkers <- function() {
-  wc <- if (exists('info', where=.foreachGlobals, inherits=FALSE))
+  wc <- if (exists('seqInfo', where=.foreachGlobals, inherits=FALSE))
     .foreachGlobals$seqInfo(.foreachGlobals$seqData, 'workers')
   else
     NULL
@@ -73,8 +73,8 @@ getDoSeqWorkers <- function() {
 # this returns the number of workers used by the currently registered
 # parallel backend
 getDoParWorkers <- function() {
-  wc <- if (exists('parInfo', where=.foreachGlobals, inherits=FALSE))
-    .foreachGlobals$parInfo(.foreachGlobals$parData, 'workers')
+  wc <- if (exists('info', where=.foreachGlobals, inherits=FALSE))
+    .foreachGlobals$info(.foreachGlobals$data, 'workers')
   else
     NULL
 
@@ -131,8 +131,8 @@ getDoSeq <- function() {
 
 # used internally to get the currently registered parallel backend
 getDoPar <- function() {
-  if (exists('parFun', where=.foreachGlobals, inherits=FALSE)) {
-    list(fun=.foreachGlobals$parFun, data=.foreachGlobals$parData)
+  if (exists('fun', where=.foreachGlobals, inherits=FALSE)) {
+    list(fun=.foreachGlobals$fun, data=.foreachGlobals$data)
   } else {
     if (!exists('parWarningIssued', where=.foreachGlobals, inherits=FALSE)) {
       warning('executing %dopar% sequentially: no parallel backend registered',
