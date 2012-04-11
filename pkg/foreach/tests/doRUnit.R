@@ -21,26 +21,15 @@ if(require("RUnit", quietly=TRUE)) {
   ################################################################
   ## BEGIN PACKAGE SPECIFIC CONFIGURATION                        #
   ################################################################
-  if ("doSMP" %in% row.names(installed.packages())){
-	library(doSMP)
-        w <- startWorkers(2)
+  if ("doParallel" %in% row.names(installed.packages())){
+	library(doParallel)
+        w <- makeCluster(2)
         .Last <- function(){
-            cat('shutting down SMP workers...\n')
-            stopWorkers(w)
+            cat('shutting down cluster...\n')
+            stopCluster(w)
             cat('shutdown complete\n')
         }
-        registerDoSMP(w)
-        # initialize the workers that we've just registered to use
-        # a sequential backend so we don't get warning messages from
-        # nestedTest.R when running the test suite using doSMP
-        initEnvir <- function(e) {
-           library(foreach)
-           registerDoSEQ()
-        }
-        smpopts <- list(initEnvir=initEnvir)
-        r <- foreach(icount(getDoParWorkers()), .options.smp=smpopts) %dopar% {
-              Sys.sleep(3)  # XXX hack: need a barrier of some kind
-        }
+        registerDoParallel(cl=w)
 
   } else if  ("doMC" %in% row.names(installed.packages())) {
          library(doMC)

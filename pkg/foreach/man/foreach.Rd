@@ -108,12 +108,16 @@ return a value (a list, by default), rather than to cause side-effects.
 This faciliates parallelization, but looks more natural to people that
 prefer \code{for} loops to \code{lapply}.
 
+The \code{\%:\%} operator is the \emph{nesting} operator, used for creating
+nested foreach loops. Type \code{vignette("nested")} at the R prompt for
+more details.
+
 Parallel computation depends upon a \emph{parallel backend} that must be 
 registered before performing the computation. The parallel backends available
-will be system-specific, but include \code{doNWS}, which uses the NetWorkSpaces
-parallelization system, \code{doMC}, which uses the \code{multicore} package,
-and \code{doSNOW}. Each parallel backend has a specific registration function,
-such as \code{registerDoNWS} or \code{registerDoSNOW}.
+will be system-specific, but include \code{doParallel}, which uses R's built-in
+\pkg{parallel} package, \pkg{doMC}, which uses the \pkg{multicore} package,
+and \pkg{doSNOW}. Each parallel backend has a specific registration function,
+such as \code{registerDoParallel} or \code{registerDoSNOW}.
 
 The \code{times} function is a simple convenience function that calls
 \code{foreach}.  It is useful for evaluating an \code{R} expression multiple
@@ -144,6 +148,7 @@ foreach(i=1:nrow(m), .combine=rbind) \%dopar\%
   (m[i,] / mean(m[i,]))
 
 # simple (and inefficient) parallel matrix multiply
+library(iterators)
 a <- matrix(1:16, 4, 4)
 b <- t(a)
 foreach(b=iter(b, by='col'), .combine=cbind) \%dopar\%

@@ -18,16 +18,39 @@
 
 # this is called to register a parallel backend
 setDoPar <- function(fun, data=NULL, info=function(data, item) NULL) {
-  assign('fun', fun, pos=.foreachGlobals, inherits=FALSE)
-  assign('data', data, pos=.foreachGlobals, inherits=FALSE)
-  assign('info', info, pos=.foreachGlobals, inherits=FALSE)
+  tryCatch(
+    {
+      assign('fun', fun, pos=.foreachGlobals, inherits=FALSE)
+      assign('data', data, pos=.foreachGlobals, inherits=FALSE)
+      assign('info', info, pos=.foreachGlobals, inherits=FALSE)
+    }, error = function(e) {
+         if (exists('fun', where=.foreachGlobals, inherits=FALSE))
+		remove('fun', envir=.foreachGlobals)
+         if (exists('data', where=.foreachGlobals, inherits=FALSE))
+		remove('data', envir=.foreachGlobals)
+         if (exists('info', where=.foreachGlobals, inherits=FALSE))
+		remove('info', envir=.foreachGlobals)
+         e
+	})
 }
+
 
 # this is called to register a sequential backend
 setDoSeq <- function(fun, data=NULL, info=function(data, item) NULL) {
-  assign('seqFun', fun, pos=.foreachGlobals, inherits=FALSE)
-  assign('seqData', data, pos=.foreachGlobals, inherits=FALSE)
-  assign('seqInfo', info, pos=.foreachGlobals, inherits=FALSE)
+  tryCatch(
+    {
+       assign('seqFun', fun, pos=.foreachGlobals, inherits=FALSE)
+       assign('seqData', data, pos=.foreachGlobals, inherits=FALSE)
+       assign('seqInfo', info, pos=.foreachGlobals, inherits=FALSE)
+    }, error = function(e) {
+         if (exists('fun', where=.foreachGlobals, inherits=FALSE))
+		remove('fun', envir = .foreachGlobals)
+         if (exists('data', where=.foreachGlobals, inherits=FALSE))
+		remove('data', envir = .foreachGlobals)
+         if (exists('info', where=.foreachGlobals, inherits=FALSE))
+		remove('info', envir = .foreachGlobals)
+         e
+        })
 }
 
 # this explicitly registers a sequential backend for do and dopar.
