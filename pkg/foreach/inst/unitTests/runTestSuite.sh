@@ -27,28 +27,6 @@ if (method == 'SNOW') {
   cat('** Using multicore backend\n')
   library(doMC)
   registerDoMC()
-} else if (method == 'SMP') {
-  cat('** Using SMP backend\n')
-  library(doSMP)
-  w <- startWorkers(verbose=verbose)
-  .Last <- function() {
-    cat('shutting down SMP workers...\n')
-    stopWorkers(w)
-    cat('shutdown complete\n')
-  }
-  registerDoSMP(w)
-
-  # initialize the workers that we've just registered to use
-  # a sequential backend so we don't get warning messages from
-  # nestedTest.R when running the test suite using doSMP
-  initEnvir <- function(e) {
-    library(foreach)
-    registerDoSEQ()
-  }
-  smpopts <- list(initEnvir=initEnvir)
-  r <- foreach(icount(getDoParWorkers()), .options.smp=smpopts) %dopar% {
-    Sys.sleep(3)  # XXX hack: need a barrier of some kind
-  }
 } else if (method == 'SEQ') {
   cat('** Using sequential backend\n')
   registerDoSEQ()

@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-.onLoad <- function(lib, pkg) {
+.onAttach <- function(lib, pkg) {
   if (interactive()) {
     packageStartupMessage('foreach: simple, scalable parallel programming from Revolution Analytics\n',
         'Use Revolution R for scalability, fault tolerance and more.\n',

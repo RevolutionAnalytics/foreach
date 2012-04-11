@@ -215,7 +215,7 @@ single loop or nested loops, is to use {\em task chunking}.
 
 Task chunking allows you to send multiple tasks to the workers at once.
 This can be much more efficient, especially for short tasks.  Currently,
-only the \texttt{doNWS} and \texttt{doSMP} backends support task
+only the \texttt{doNWS} backend supports task
 chunking.  Here's how it's done with \texttt{doNWS}:
 
 <<foreach3>>=
@@ -330,6 +330,7 @@ a limitation, but an important aspect of the design of the
 \texttt{foreach} function.}
 
 <<foreach5>>=
+library(iterators)
 opts <- list(chunkSize=2)
 d <-
   foreach(b=bvec, j=icount(), .combine='rbind', .options.nws=opts) %:%

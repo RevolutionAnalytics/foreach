@@ -297,6 +297,7 @@ of data.  The \texttt{iterators} package supplies a function called
 for each time it is called.  For example:
 
 <<ex8>>=
+library(iterators)
 x <- foreach(a=irnorm(4, count=4), .combine='cbind') %do% a
 x
 @

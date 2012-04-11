@@ -1,6 +1,15 @@
 NEWS/ChangeLog for foreach
 --------------------------
 
+1.4.0   2012-04-11
+    o   Moved welcome message from .onLoad to .onAttach. Bug report 
+        from Benilton Carvalho.
+    o   Modified setDoPar and setDoSeq to undo changes to .foreachGlobals
+        on error. Bug report from Benilton Carvalho.
+    o   Moved vignettes from inst/doc to vignettes. 
+    o   Modified DESCRIPTION file by moving codetools, iterators, and utils
+        from Depends to Imports. Bug report from Suraj Gupta.
+
 1.3.5   2012-03-14
     o   Cleanup from previous patch. Bug report from Brian Ripley.
 
