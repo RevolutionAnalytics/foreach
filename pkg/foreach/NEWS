@@ -2,6 +2,8 @@ NEWS/ChangeLog for foreach
 --------------------------
 
 1.4.0   2012-04-11
+    o   Removed spurious warning from getDoSEQ. Bug report from Ben
+	    Barnes.
     o   Moved welcome message from .onLoad to .onAttach. Bug report 
         from Benilton Carvalho.
     o   Modified setDoPar and setDoSeq to undo changes to .foreachGlobals

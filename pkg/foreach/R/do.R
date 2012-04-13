@@ -143,11 +143,6 @@ getDoSeq <- function() {
   if (exists('seqFun', where=.foreachGlobals, inherits=FALSE)) {
     list(fun=.foreachGlobals$seqFun, data=.foreachGlobals$seqdata)
   } else {
-    if (!exists('seqWarningIssued', where=.foreachGlobals, inherits=FALSE)) {
-      warning('executing %dopar% sequentially: no parallel backend registered',
-              call.=FALSE)
-      assign('seqWarningIssued', TRUE, pos=.foreachGlobals, inherits=FALSE)
-    }
     list(fun=doSEQ, data=NULL)
   }
 }
