@@ -83,7 +83,9 @@ getexports <- function(ex, e, env, good=character(0), bad=character(0)) {
 
       # if this is a function, check if we should change the
       # enclosing environment to be this new environment
-      if (is.function(val) && identical(environment(val), env))
+      fenv <- environment(val)
+      if (is.function(val) &&
+          (identical(fenv, env) || identical(fenv, .GlobalEnv)))
         environment(val) <- e
 
       assign(s, val, e)
