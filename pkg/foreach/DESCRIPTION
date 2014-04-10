@@ -1,7 +1,7 @@
 Package: foreach
 Type: Package
 Title: Foreach looping construct for R
-Version: 1.4.1
+Version: 1.4.2
 Author: Revolution Analytics, Steve Weston
 Maintainer: Revolution Analytics <packages@revolutionanalytics.com>
 Description: Support for the foreach looping construct.  Foreach is an
