@@ -21,21 +21,22 @@ if(require("RUnit", quietly=TRUE)) {
   ################################################################
   ## BEGIN PACKAGE SPECIFIC CONFIGURATION                        #
   ################################################################
-  if ("doParallel" %in% row.names(installed.packages())){
+  if (!identical(system.file("DESCRIPTION", package="doParallel") , "")){
 	library(doParallel)
-        w <- makeCluster(2)
-        .Last <- function(){
+    w <- makeCluster(2)
+    .Last <- function(){
             cat('shutting down cluster...\n')
             stopCluster(w)
             cat('shutdown complete\n')
         }
-        registerDoParallel(cl=w)
+    registerDoParallel(cl=w)
 
-  } else if  ("doMC" %in% row.names(installed.packages())) {
+  } else if  (!identical(system.file("DESCRIPTION", package="doMC") , "")) {
          library(doMC)
          registerDoMC(2)
   } else {
 	# default to sequential
+         library(iterators)
          registerDoSEQ()
   }
   ################################################################
