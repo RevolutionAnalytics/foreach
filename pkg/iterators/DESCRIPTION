@@ -1,9 +1,10 @@
 Package: iterators
 Type: Package
-Title: Iterator construct for R
-Version: 1.0.7
-Author: Revolution Analytics
-Maintainer: Revolution Analytics <packages@revolutionanalytics.com>
+Title: Iterator Construct for R
+Version: 1.0.8
+Authors@R: c(person("Rich", "Calaway", role="cre", email="richcala@microsoft.com"),
+             person("Revolution", "Analytics", role=c("aut", "cph")),
+			 person("Steve", "Weston", role="aut"))
 Description: Support for iterators, which allow a programmer to traverse
         through all the elements of a vector, list, or other collection
         of data.
