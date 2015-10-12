@@ -1,6 +1,6 @@
 Package: iterators
 Type: Package
-Title: Iterator Construct for R
+Title: Provides Iterator Construct for R
 Version: 1.0.8
 Authors@R: c(person("Rich", "Calaway", role="cre", email="richcala@microsoft.com"),
              person("Revolution", "Analytics", role=c("aut", "cph")),
