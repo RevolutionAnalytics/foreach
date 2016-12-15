@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008-2010 Revolution Analytics
+# Copyright (c) Microsoft. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ makeAccum <- function(it) {
     if (identical(it$error.handling, 'stop') && !is.null(it$state$errorValue))
       return(invisible(NULL))
 
-    for (i in seq(along=tags)) {
+    for (i in seq(along.with=tags)) {
       if (it$verbose)
         cat(sprintf('got results for task %d\n', tags[i]))
       accumulate(it, results[[i]], tags[i])
