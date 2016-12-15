@@ -1,9 +1,9 @@
 Package: foreach
 Type: Package
 Title: Provides Foreach Looping Construct for R
-Version: 1.4.3
+Version: 1.4.4
 Authors@R: c(person("Rich", "Calaway", role="cre", email="richcala@microsoft.com"),
-             person("Revolution", "Analytics", role=c("aut", "cph")),
+             person("Microsoft", role=c("aut", "cph")),
 			 person("Steve", "Weston", role="aut"))
 Description: Support for the foreach looping construct.  Foreach is an
         idiom that allows for iterating over elements in a collection,

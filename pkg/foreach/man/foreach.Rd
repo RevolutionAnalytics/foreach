@@ -38,6 +38,9 @@ times(n)
     \code{ex} should be evaluated.
     At least one argument must be specified in order to define the
     number of times \code{ex} should be executed.}
+	If multiple arguments are supplied, the number of times \code{ex} is
+	evaluated is equal to the smallest number of iterations among the supplied 
+	arguments. See the examples.
   \item{.combine}{function that is used to process the tasks results as
     they generated.  This can be specified as either a function or
     a non-empty character string naming the function.
@@ -115,9 +118,8 @@ more details.
 Parallel computation depends upon a \emph{parallel backend} that must be 
 registered before performing the computation. The parallel backends available
 will be system-specific, but include \code{doParallel}, which uses R's built-in
-\pkg{parallel} package, \pkg{doMC}, which uses the \pkg{multicore} package,
-and \pkg{doSNOW}. Each parallel backend has a specific registration function,
-such as \code{registerDoParallel} or \code{registerDoSNOW}.
+\pkg{parallel} package. Each parallel backend has a specific registration function,
+such as \code{registerDoParallel}.
 
 The \code{times} function is a simple convenience function that calls
 \code{foreach}.  It is useful for evaluating an \code{R} expression multiple
@@ -135,6 +137,10 @@ times(3) \%do\% rnorm(1)
 foreach(i=1:3) \%do\%
   sqrt(i)
 
+# multiple ... arguments
+foreach(i=1:4, j=1:10) \%do\%
+	sqrt(i+j)
+	
 # equivalent to colMeans(m)
 m <- matrix(rnorm(9), 3, 3)
 foreach(i=1:ncol(m), .combine=c) \%do\%
