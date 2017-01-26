@@ -37,10 +37,11 @@ times(n)
     An unnamed argument can be used to specify the number of times that
     \code{ex} should be evaluated.
     At least one argument must be specified in order to define the
-    number of times \code{ex} should be executed.}
+    number of times \code{ex} should be executed.
+	
 	If multiple arguments are supplied, the number of times \code{ex} is
 	evaluated is equal to the smallest number of iterations among the supplied 
-	arguments. See the examples.
+	arguments. See the examples.}
   \item{.combine}{function that is used to process the tasks results as
     they generated.  This can be specified as either a function or
     a non-empty character string naming the function.
