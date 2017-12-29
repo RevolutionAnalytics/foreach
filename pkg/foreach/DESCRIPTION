@@ -1,7 +1,7 @@
 Package: foreach
 Type: Package
 Title: Provides Foreach Looping Construct for R
-Version: 1.4.4
+Version: 1.4.5
 Authors@R: c(person("Rich", "Calaway", role="cre", email="richcala@microsoft.com"),
              person("Microsoft", role=c("aut", "cph")),
 			 person("Steve", "Weston", role="aut"))
