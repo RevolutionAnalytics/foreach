@@ -5,11 +5,12 @@
 The Foreach Package
 }
 \description{
-The foreach package provides a new looping construct for executing
+The foreach package provides a looping construct for executing
 R code repeatedly.  The main reason for using the foreach package
 is that it supports parallel execution.  The foreach package can
 be used with a variety of different parallel computing systems,
-include NetWorkSpaces and snow.  In addition, foreach can be
+including MPI, Azure Batch, NetWorkSpaces and snow.  In addition, 
+foreach can be
 used with iterators, which allows the data to specified in a very
 flexible way.
 }

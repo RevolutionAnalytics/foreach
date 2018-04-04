@@ -1,7 +1,7 @@
 Package: foreach
 Type: Package
 Title: Provides Foreach Looping Construct for R
-Version: 1.4.5
+Version: 1.4.6
 Authors@R: c(person("Rich", "Calaway", role="cre", email="richcala@microsoft.com"),
              person("Microsoft", role=c("aut", "cph")),
 			 person("Steve", "Weston", role="aut"))
@@ -15,6 +15,6 @@ Description: Support for the foreach looping construct.  Foreach is an
         facilitates executing the loop in parallel.
 Depends: R (>= 2.5.0) 
 Imports: codetools, utils, iterators
-Suggests: randomForest
+Suggests: randomForest, future
 Enhances: compiler, doMC, RUnit, doParallel
 License: Apache License (== 2.0)

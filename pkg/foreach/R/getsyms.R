@@ -76,10 +76,23 @@ expandsyms <- function(syms, env, good, bad) {
 
 getexports <- function(ex, e, env, good=character(0), bad=character(0)) {
   syms <- getsyms(ex)
-  syms <- expandsyms(syms, env, good, bad)
+  useFuture <- FALSE
+  if (requireNamespace("future", quietly=TRUE)){
+    useFuture <- TRUE
+    gp <- future::getGlobalsAndPackages(ex,env)
+	syms <- names(gp$globals)
+	packages <- gp$packages
+  } else {
+	packages <- NULL
+	syms <- expandsyms(syms, env, good, bad)
+  }
   for (s in syms) {
     if (s != '...') {
+	if (!useFuture){
       val <- get(s, env, inherits=FALSE)
+	} else {
+	  val <- gp$globals[[match(s,syms)]]
+	} 
 
       # if this is a function, check if we should change the
       # enclosing environment to be this new environment
@@ -91,5 +104,7 @@ getexports <- function(ex, e, env, good=character(0), bad=character(0)) {
       assign(s, val, e)
     }
   }
-  invisible(NULL)
+
+
+  invisible(packages)
 }
