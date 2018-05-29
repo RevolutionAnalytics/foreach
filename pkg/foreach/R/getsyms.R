@@ -77,10 +77,10 @@ expandsyms <- function(syms, env, good, bad) {
 getexports <- function(ex, e, env, good=character(0), bad=character(0)) {
   syms <- getsyms(ex)
   useFuture <- FALSE
-  if (requireNamespace("future", quietly=TRUE)){
+  if (requireNamespace("future", quietly=TRUE) && !identical(getOption("foreachGlobals"), "foreach")){
     useFuture <- TRUE
     gp <- future::getGlobalsAndPackages(ex,env)
-	syms <- names(gp$globals)
+	syms <- union(expandsyms(syms, env, good, bad), names(gp$globals))
 	packages <- gp$packages
   } else {
 	packages <- NULL
