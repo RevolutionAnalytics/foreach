@@ -60,7 +60,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title{Writing Custom Iterators}
-\author{Steve Weston \\ doc@revolutionanalytics.com}
+\author{Steve Weston}
 
 
 \begin{document}
