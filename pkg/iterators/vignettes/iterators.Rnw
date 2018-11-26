@@ -60,7 +60,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title{Using The {\tt iterators} Package}
-\author{Rich Calaway \\ doc@revolutionanalytics.com}
+\author{Rich Calaway}
 
 
 \begin{document}

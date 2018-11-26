@@ -65,7 +65,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title{Nesting {\tt Foreach} Loops}
-\author{Steve Weston \\ doc@revolutionanalytics.com}
+\author{Steve Weston}
 
 
 \begin{document}
