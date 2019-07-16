@@ -1,8 +1,8 @@
 Package: iterators
 Type: Package
 Title: Provides Iterator Construct
-Version: 1.0.11
-Authors@R: c(person("Rich", "Calaway", role="cre", email="richcala@microsoft.com"),
+Version: 1.0.12
+Authors@R: c(person("Hong", "Ooi", role="cre", email="hongooi@microsoft.com"),
              person("Revolution", "Analytics", role=c("aut", "cph")),
 			 person("Steve", "Weston", role="aut"))
 Description: Support for iterators, which allow a programmer to traverse
