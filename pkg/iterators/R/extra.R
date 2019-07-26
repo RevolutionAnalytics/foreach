@@ -18,8 +18,7 @@
 # an optional "count" argument which specifies the number of times the
 # resulting iterator should fire.  The iterators are wrappers around functions
 # that return different values each time they are called.  All this is done to
-# avoid cutting and pasting the same code repeatedly.  We could make this
-# function available to the user, but I'm not sure if we will immediately.
+# avoid cutting and pasting the same code repeatedly.  
 makeIwrapper <- function(FUN) {
   function(..., count) {
     if (!missing(count) && (!is.numeric(count) || length(count) != 1))
@@ -59,7 +58,7 @@ irnorm <- makeIwrapper('rnorm')
 irbinom <- makeIwrapper('rbinom')
 irnbinom <- makeIwrapper('rnbinom')
 irpois <- makeIwrapper('rpois')
-isample <- makeIwrapper('sample')  # not in the NAMESPACE currently
+isample <- makeIwrapper('sample')  
 
 # a counting iterator
 icount <- function(count) {
