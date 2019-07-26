@@ -1,6 +1,7 @@
 export(iter, nextElem, isplit)
 export(irnorm, irunif, irbinom, irnbinom, irpois)
 export(icount, idiv, ireadLines, iread.table)
+export(makeIwrapper, isample)
 export(icountn, iapply)
 S3method("iter", "default")
 S3method("iter", "iter")
