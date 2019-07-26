@@ -16,9 +16,10 @@ isample(..., count)
 
 }
 \arguments{
-  \item{FUN}{a function that generates different values each time it is
+  \item{FUN}{a character string naming a function that generates 
+    different values each time it is
     called; typically one of the
-    standard random number generator functions.
+    standard random number generator functions.}
   \item{count}{number of times that the iterator will fire.
                If not specified, it will fire values forever.}
   \item{\dots}{arguments to pass to the underlying \code{FUN} function.}
@@ -28,7 +29,7 @@ isample(..., count)
 }
 \examples{
   # create an iterator maker for the sample function
-  mysample <- makeIwrapper(sample)
+  mysample <- makeIwrapper('sample')
   # use this iterator maker to generate an iterator
   # that will generate three five member samples from the
   # sequence 1:100
