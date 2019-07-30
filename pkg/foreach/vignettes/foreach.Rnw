@@ -60,7 +60,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title{Using The {\tt foreach} Package}
-\author{Steve Weston}
+\author{Steve Weston \\ doc@revolutionanalytics.com}
 
 
 \begin{document}
@@ -419,11 +419,6 @@ expression evaluations for that \texttt{foreach} execution.  That is
 true for functions that are defined in the current environment as well,
 but in this case, the function is defined in a package, so we had to
 specify the package to load with the \texttt{.packages} option instead.
-
-Beginning with \texttt{foreach} 0.5.0, \texttt{foreach} will use the
-\texttt{future} package, if available, to automatically detect needed 
-packages. (This also requires appropriately updated \texttt{foreach} backends.)
-You can retain the old behavior by setting \texttt{options(foreachGlobals="foreach")}.
 
 \subsection{Parallel Apply}
 

@@ -1,17 +1,6 @@
 NEWS/ChangeLog for foreach
 --------------------------
-1.5.1   2018-08-27
-    o   Fixed bug in global detection, added regression test. Report of Tom Philippi.
-	
-1.5.0   2018-05-27
-    o   Adding support for package and globals detection via future package.
-        Original behavior can be retained by setting 
 
-           options(foreachGlobals="foreach")
-
-1.4.5   2018-01-03
-    o   Bumping version for consistency with Microsoft R Open. 
-	
 1.4.4	2017-12-08
 	o	Changed test report path for compliance with CRAN policies.
 	o   Removed startup message.

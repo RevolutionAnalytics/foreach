@@ -1,7 +1,7 @@
 Package: foreach
 Type: Package
-Title: Provides Foreach Looping Construct for R
-Version: 1.5.2
+Title: Provides Foreach Looping Construct
+Version: 1.4.7
 Authors@R: c(person("Hong", "Ooi", role="cre", email="hongooi@microsoft.com"),
              person("Microsoft", role=c("aut", "cph")),
 			 person("Steve", "Weston", role="aut"))
@@ -13,8 +13,14 @@ Description: Support for the foreach looping construct.  Foreach is an
         standard lapply function, but doesn't require the evaluation
         of a function.  Using foreach without side effects also
         facilitates executing the loop in parallel.
-Depends: R (>= 2.5.0) 
+Depends: R (>= 2.5.0)
 Imports: codetools, utils, iterators
-Suggests: randomForest, future
+Suggests: randomForest
 Enhances: compiler, doMC, RUnit, doParallel
 License: Apache License (== 2.0)
+NeedsCompilation: no
+Packaged: 2019-07-16 21:07:01 UTC; richcala
+Author: Hong Ooi [cre],
+  Microsoft [aut, cph],
+  Steve Weston [aut]
+Maintainer: Hong Ooi <hongooi@microsoft.com>
