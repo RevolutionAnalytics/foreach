@@ -76,10 +76,9 @@ expandsyms <- function(syms, env, good, bad) {
 
 getexports <- function(ex, e, env, good=character(0), bad=character(0)) {
   syms <- getsyms(ex)
-  useFuture <- FALSE
-  if (requireNamespace("future", quietly=TRUE) && !identical(getOption("foreachGlobals"), "foreach")){
-    useFuture <- TRUE
-    gp <- future::getGlobalsAndPackages(ex,env)
+  useFuture <- setUseFuture()
+  if (useFuture){
+    gp <- future::getGlobalsAndPackages(ex,env, maxSize=+Inf)
 	ngp <- names(gp$globals)
 	syms <- union(expandsyms(syms, env, good, bad), ngp)
 	packages <- gp$packages
@@ -113,3 +112,23 @@ getexports <- function(ex, e, env, good=character(0), bad=character(0)) {
 
   invisible(packages)
 }
+
+"setUseFuture"<-function()
+{
+  val <- FALSE
+  globalsAs <- getOption("foreachGlobals", default="")
+  ## Keep current MRO behavior
+  if (!identical(system.file(package="RevoUtils"), "")){
+    if  (!identical(globalsAs, "foreach")&& requireNamespace("future", quietly=TRUE)) {
+	  val <- TRUE
+	} 
+  }
+  futureOption <- if(identical(globalsAs, "foreach+future")) TRUE else
+                  if(identical(globalsAs, "future+foreach")) TRUE else
+				  if(identical(globalsAs, "future")) TRUE else
+				  FALSE
+  if (futureOption && requireNamespace("future", quietly=TRUE))
+	val <- TRUE
+  val
+}  
+	  

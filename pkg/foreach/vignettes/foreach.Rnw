@@ -420,10 +420,18 @@ true for functions that are defined in the current environment as well,
 but in this case, the function is defined in a package, so we had to
 specify the package to load with the \texttt{.packages} option instead.
 
-Beginning with \texttt{foreach} 0.5.0, \texttt{foreach} will use the
+Beginning with \texttt{foreach} 1.5.2, \texttt{foreach} can use the
 \texttt{future} package, if available, to automatically detect needed 
-packages. (This also requires appropriately updated \texttt{foreach} backends.)
-You can retain the old behavior by setting \texttt{options(foreachGlobals="foreach")}.
+packages. Use \texttt{options(foreachGlobals="future")} or
+\texttt{options(foreachGlobals="foreach+future")} to activate this option.
+(The \texttt{future} package also helps to find symbols that may have been missed
+by \texttt{foreach}'s internal algorithm.)
+
+If you are using Microsoft R Open, the future package is used automatically, if 
+it is installed and can be loaded. 
+You can suppress this by setting \texttt{options(foreachGlobals="foreach")}.
+
+To unset the \texttt{foreachGlobals} option, use \texttt{options(foreachGlobals=NULL)}.
 
 \subsection{Parallel Apply}
 
