@@ -178,6 +178,10 @@ comp <- if (getRversion() < "2.13.0") {
 }
 
 doSEQ <- function(obj, expr, envir, data) {
+  local <- as.logical(Sys.getenv("R_FOREACH_DOPAR_LOCAL", "FALSE"))
+  if(local)
+    envir <- new.env(parent=envir)
+
   # note that the "data" argument isn't used
   if (!inherits(obj, 'foreach'))
     stop('obj must be a foreach object')
