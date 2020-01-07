@@ -1,5 +1,22 @@
 NEWS/ChangeLog for foreach
 --------------------------
+1.5.2   2019-01-08
+    o   Add preliminary support for evaluating %do% expressions in a local environment.
+        This addresses a long-standing inconsistency in the behaviour of %do% and
+        %dopar%, where the former would evaluate the loop body in the global
+        environment by default. The behaviour of %do% can be controlled by setting
+
+            options(foreachDoLocal=TRUE|FALSE)
+        
+        or equivalently via the system environment variable
+
+            R_FOREACH_DO_LOCAL=TRUE|FALSE
+
+        with the R option taking its value from the environment variable. The current
+        default value is FALSE, which retains the pre-existing behaviour. It is
+        intended that over time this will be changed to TRUE, making %do% and %dopar%
+        equivalent in this regard.
+
 1.5.1   2018-08-27
     o   Fixed bug in global detection, added regression test. Report of Tom Philippi.
 	
