@@ -178,8 +178,7 @@ comp <- if (getRversion() < "2.13.0") {
 }
 
 doSEQ <- function(obj, expr, envir, data) {
-  local <- as.logical(Sys.getenv("R_FOREACH_DOPAR_LOCAL", "FALSE"))
-  if(local)
+  if(getOption("foreach.do.local"))
     envir <- new.env(parent=envir)
 
   # note that the "data" argument isn't used
