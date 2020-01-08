@@ -22,10 +22,10 @@ applyPar <- function(X, MARGIN, FUN, ...)
     d <- dim(X)
     dl <- length(d)
     if(dl == 0)
-	stop("dim(X) must have a positive length")
+  stop("dim(X) must have a positive length")
     ds <- 1:dl
     if(length(oldClass(X)) > 0)
-	X <- if(dl == 2) as.matrix(X) else as.array(X)
+  X <- if(dl == 2) as.matrix(X) else as.array(X)
     ## now recompute things as coercion can change dims
     ## (e.g. when a data frame contains a matrix).
     d <- dim(X)
@@ -49,8 +49,8 @@ applyPar <- function(X, MARGIN, FUN, ...)
         ## to use proper mode and dimension:
         ## The following is still a bit `hackish': use non-empty X
         newX <- array(vector(typeof(X), 1), dim = c(prod(d.call), 1))
-        ans <- FUN(if(length(d.call) < 2) newX[,1] else
-                   array(newX[,1], d.call, dn.call), ...)
+        ans <- FUN(if(length(d.call) < 2) newX[, 1] else
+                   array(newX[, 1], d.call, dn.call), ...)
         return(if(is.null(ans)) ans else if(length(d.ans) < 2) ans[1][-1]
                else array(ans, d.ans, dn.ans))
     }
@@ -66,7 +66,7 @@ applyPar <- function(X, MARGIN, FUN, ...)
         ####     if(!is.null(tmp)) ans[[i]] <- tmp
         #### }
         ans <- foreach(x=iblkcol(newX, nw), .combine='c', .packages='foreach') %dopar% {
-          foreach(i=1:ncol(x)) %do% FUN(x[,i], ...)
+          foreach(i=seq_len(ncol(x))) %do% FUN(x[, i], ...)
         }
     } else {
         #### for(i in 1:d2) {
@@ -74,7 +74,7 @@ applyPar <- function(X, MARGIN, FUN, ...)
         ####     if(!is.null(tmp)) ans[[i]] <- tmp
         #### }
         ans <- foreach(x=iblkcol(newX, nw), .combine='c', .packages='foreach') %dopar% {
-          foreach(y=1:ncol(x)) %do% FUN(array(x[,i], d.call, dn.call), ...)
+          foreach(y=seq_len(ncol(x))) %do% FUN(array(x[, i], d.call, dn.call), ...)
         }
     }
 
@@ -85,22 +85,22 @@ applyPar <- function(X, MARGIN, FUN, ...)
 
     ans.names <- names(ans[[1]])
     if(!ans.list)
-	ans.list <- any(unlist(lapply(ans, length)) != l.ans)
+  ans.list <- any(unlist(lapply(ans, length)) != l.ans)
     if(!ans.list && length(ans.names)) {
         all.same <- sapply(ans, function(x) identical(names(x), ans.names))
         if (!all(all.same)) ans.names <- NULL
     }
     len.a <- if(ans.list) d2 else length(ans <- unlist(ans, recursive = FALSE))
     if(length(MARGIN) == 1 && len.a == d2) {
-	names(ans) <- if(length(dn.ans[[1]])) dn.ans[[1]] # else NULL
-	return(ans)
+  names(ans) <- if(length(dn.ans[[1]])) dn.ans[[1]] # else NULL
+  return(ans)
     }
     if(len.a == d2)
-	return(array(ans, d.ans, dn.ans))
+  return(array(ans, d.ans, dn.ans))
     if(len.a > 0 && len.a %% d2 == 0) {
         if(is.null(dn.ans)) dn.ans <- vector(mode="list", length(d.ans))
         dn.ans <- c(list(ans.names), dn.ans)
-	return(array(ans, c(len.a %/% d2, d.ans),
+  return(array(ans, c(len.a %/% d2, d.ans),
                      if(!all(sapply(dn.ans, is.null))) dn.ans))
     }
     return(ans)
@@ -121,7 +121,7 @@ iblkcol <- function(a, chunks) {
     i <<- i + m
     n <<- n - m
     chunks <<- chunks - 1
-    a[,r, drop=FALSE]
+    a[, r, drop=FALSE]
   }
 
   obj <- list(nextElem=nextEl)

@@ -19,7 +19,7 @@ NEWS/ChangeLog for foreach
 
 1.5.1   2018-08-27
     o   Fixed bug in global detection, added regression test. Report of Tom Philippi.
-	
+  
 1.5.0   2018-05-27
     o   Adding support for package and globals detection via future package.
         Original behavior can be retained by setting 
@@ -28,28 +28,28 @@ NEWS/ChangeLog for foreach
 
 1.4.5   2018-01-03
     o   Bumping version for consistency with Microsoft R Open. 
-	
-1.4.4	2017-12-08
-	o	Changed test report path for compliance with CRAN policies.
-	o   Removed startup message.
-	o	Changed seq(along=tags) call in makeAccum to seq(along.with=tags); 
-		request of Henrik Bengtsson.
-	o	Updated foreach help to describe effect of multiple arguments; 
-		request of David Winsemius.
+  
+1.4.4  2017-12-08
+  o  Changed test report path for compliance with CRAN policies.
+  o   Removed startup message.
+  o  Changed seq(along=tags) call in makeAccum to seq(along.with=tags); 
+    request of Henrik Bengtsson.
+  o  Updated foreach help to describe effect of multiple arguments; 
+    request of David Winsemius.
 
-1.4.3	2015-10-12
-	o	Updated maintainer address
-	
-1.4.2 	2014-04-10
-    o	Unwound circular dependency chain with iterators package.
-	
+1.4.3  2015-10-12
+  o  Updated maintainer address
+  
+1.4.2   2014-04-10
+    o  Unwound circular dependency chain with iterators package.
+  
 1.4.1   2013-05-29
     o   Improved handling of implicitly exported objects, courtesy of 
         Steve Weston.
 
 1.4.0   2012-04-11
     o   Removed spurious warning from getDoSEQ. Bug report from Ben
-	    Barnes.
+      Barnes.
     o   Moved welcome message from .onLoad to .onAttach. Bug report 
         from Benilton Carvalho.
     o   Modified setDoPar and setDoSeq to undo changes to .foreachGlobals

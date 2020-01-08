@@ -77,27 +77,27 @@ expandsyms <- function(syms, env, good, bad) {
 getexports <- function(ex, e, env, good=character(0), bad=character(0)) {
   syms <- getsyms(ex)
   useFuture <- FALSE
-  if (requireNamespace("future", quietly=TRUE) && !identical(getOption("foreachGlobals"), "foreach")){
+  if (requireNamespace("future", quietly=TRUE) && !identical(getOption("foreachGlobals"), "foreach")) {
     useFuture <- TRUE
-    gp <- future::getGlobalsAndPackages(ex,env)
-	ngp <- names(gp$globals)
-	syms <- union(expandsyms(syms, env, good, bad), ngp)
-	packages <- gp$packages
+    gp <- future::getGlobalsAndPackages(ex, env)
+  ngp <- names(gp$globals)
+  syms <- union(expandsyms(syms, env, good, bad), ngp)
+  packages <- gp$packages
   } else {
-	packages <- NULL
-	syms <- expandsyms(syms, env, good, bad)
+  packages <- NULL
+  syms <- expandsyms(syms, env, good, bad)
   }
   for (s in syms) {
     if (s != '...') {
-	if (!useFuture){
+  if (!useFuture) {
       val <- get(s, env, inherits=FALSE)
-	} else {
-	  if (s %in% ngp){
-		val <- gp$globals[[match(s,ngp)]]
-	  } else {
-		val <- get(s, env, inherits=FALSE)
-	  }
-	} 
+  } else {
+    if (s %in% ngp) {
+    val <- gp$globals[[match(s, ngp)]]
+    } else {
+    val <- get(s, env, inherits=FALSE)
+    }
+  }
 
       # if this is a function, check if we should change the
       # enclosing environment to be this new environment

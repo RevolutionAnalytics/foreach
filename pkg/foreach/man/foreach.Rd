@@ -38,10 +38,10 @@ times(n)
     \code{ex} should be evaluated.
     At least one argument must be specified in order to define the
     number of times \code{ex} should be executed.
-	
-	If multiple arguments are supplied, the number of times \code{ex} is
-	evaluated is equal to the smallest number of iterations among the supplied 
-	arguments. See the examples.}
+  
+  If multiple arguments are supplied, the number of times \code{ex} is
+  evaluated is equal to the smallest number of iterations among the supplied 
+  arguments. See the examples.}
   \item{.combine}{function that is used to process the tasks results as
     they generated.  This can be specified as either a function or
     a non-empty character string naming the function.
@@ -140,8 +140,8 @@ foreach(i=1:3) \%do\%
 
 # multiple ... arguments
 foreach(i=1:4, j=1:10) \%do\%
-	sqrt(i+j)
-	
+  sqrt(i+j)
+  
 # equivalent to colMeans(m)
 m <- matrix(rnorm(9), 3, 3)
 foreach(i=1:ncol(m), .combine=c) \%do\%
