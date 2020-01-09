@@ -15,7 +15,7 @@
 #
 
 .onLoad <- function(libname, pkgname) {
-  local <- as.logical(Sys.getenv("R_FOREACH_DO_LOCAL", "FALSE"))
-  options(foreachDoLocal=local)
+  local <- as.logical(Sys.getenv("R_FOREACH_DOPAR_LOCAL", "FALSE"))
+  options(foreachDoparLocal=local)
   invisible(NULL)
 }

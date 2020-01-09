@@ -157,7 +157,10 @@ getDoPar <- function() {
               call.=FALSE)
       assign('parWarningIssued', TRUE, pos=.foreachGlobals, inherits=FALSE)
     }
-    list(fun=doSEQ, data=NULL)
+    # we hijack the "data" argument to let doSEQ detect whether to
+    # evaluate the expression in the global env (%do% behaviour and
+    # default %dopar% behaviour) or, as an option for %dopar%, locally
+    list(fun=doSEQ, data=getOption("foreachDoparLocal"))
   }
 }
 
@@ -178,10 +181,10 @@ comp <- if (getRversion() < "2.13.0") {
 }
 
 doSEQ <- function(obj, expr, envir, data) {
-  if(getOption("foreachDoLocal"))
+  if(!is.null(data) && as.logical(data))
     envir <- new.env(parent=envir)
 
-  # note that the "data" argument isn't used
+  # note that the "data" argument isn't used from here on
   if (!inherits(obj, 'foreach'))
     stop('obj must be a foreach object')
 
