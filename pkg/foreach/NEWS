@@ -18,6 +18,11 @@ NEWS/ChangeLog for foreach
         default value is FALSE, which retains the pre-existing behaviour. It is
         intended that over time this will be changed to TRUE.
 
+        A side-effect of this change is that the behaviour of %do% and %dopar% will
+        (eventually) be different for a sequential backend. See
+        https://github.com/RevolutionAnalytics/foreach/issues/3 for more discussion on
+        this issue.
+
 1.4.4	2017-12-08
 	o	Changed test report path for compliance with CRAN policies.
 	o   Removed startup message.
