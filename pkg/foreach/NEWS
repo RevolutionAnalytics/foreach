@@ -1,6 +1,23 @@
 NEWS/ChangeLog for foreach
 --------------------------
 
+1.4.5   2019-01-14
+    o   Add preliminary support for evaluating %dopar% expressions in a local
+        environment, when a sequential backend is used. This addresses a long-standing
+        inconsistency in the behaviour of %dopar% with parallel and sequential
+        backends, where the latter would evaluate the loop body in the global
+        environment by default. The behaviour of %dopar% can be controlled by setting
+
+            options(foreachDoparLocal=TRUE|FALSE)
+
+        or equivalently via the system environment variable
+
+            R_FOREACH_DOPAR_LOCAL=TRUE|FALSE
+
+        with the R option taking its value from the environment variable. The current
+        default value is FALSE, which retains the pre-existing behaviour. It is
+        intended that over time this will be changed to TRUE.
+
 1.4.4	2017-12-08
 	o	Changed test report path for compliance with CRAN policies.
 	o   Removed startup message.
