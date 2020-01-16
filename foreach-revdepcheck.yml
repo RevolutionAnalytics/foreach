@@ -24,7 +24,8 @@ steps:
   displayName: 'Caching packages'
 
 - bash: |
-    Rscript -e "pkgs <- c('remotes', 'rcmdcheck', 'revdepcheck'); if(length(find.package(pkgs, quiet=TRUE)) != length(pkgs)) install.packages(pkgs)"
+    Rscript -e "pkgs <- c('remotes', 'rcmdcheck'); if(length(find.package(pkgs, quiet=TRUE)) != length(pkgs)) install.packages(pkgs)"
+    Rscript -e "remotes::install_github('r-lib/revdepcheck')"
     Rscript -e "remotes::install_deps('pkg/foreach', dependencies=TRUE)"
   displayName: 'Installing package dependencies'
 
