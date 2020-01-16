@@ -163,6 +163,11 @@ getDoPar <- function() {
 
 '%do%' <- function(obj, ex) {
   e <- getDoSeq()
+
+  # set a marker that we are calling the iterator from %do%, rather than %dopar%
+  # this is required to let %dopar% eval its expr in a local env
+  environment(e$fun) <- new.env(parent=environment(e$fun))
+  environment(e$fun)$.foreach_do <- TRUE
   e$fun(obj, substitute(ex), parent.frame(), e$data)
 }
 
@@ -178,6 +183,12 @@ comp <- if (getRversion() < "2.13.0") {
 }
 
 doSEQ <- function(obj, expr, envir, data) {
+  # check for a marker that this is called from %do%, not %dopar%
+  # if the marker does not exist, we are in a %dopar% call
+  if(is.null(parent.env(environment())$.foreach_do) &&
+     getOption("foreachDoparLocal"))
+    envir <- new.env(parent=envir)
+
   # note that the "data" argument isn't used
   if (!inherits(obj, 'foreach'))
     stop('obj must be a foreach object')
@@ -231,7 +242,7 @@ doSEQ <- function(obj, expr, envir, data) {
 
   if (identical(obj$errorHandling, 'stop') && !is.null(errorValue)) {
     msg <- sprintf('task %d failed - "%s"', errorIndex,
-                   conditionMessage(errorValue))
+                  conditionMessage(errorValue))
     stop(simpleError(msg, call=expr))
   } else {
     getResult(it)
