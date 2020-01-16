@@ -19,7 +19,7 @@ steps:
 
 - task: CacheBeta@0
   inputs:
-    key: './DESCRIPTION | "$(rockerImage)" | "$(cranRepo)"'
+    key: 'pkg/foreach/DESCRIPTION | "$(rockerImage)" | "$(cranRepo)"'
     path: '$(R_LIBS_USER)'
   displayName: 'Caching packages'
 
