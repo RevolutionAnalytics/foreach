@@ -16,6 +16,7 @@
 
 .onLoad <- function(libname, pkgname) {
   local <- as.logical(Sys.getenv("R_FOREACH_DOPAR_LOCAL", "FALSE"))
+  local <- getOption("foreachDoparLocal", local)
   options(foreachDoparLocal=local)
   invisible(NULL)
 }

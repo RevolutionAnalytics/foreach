@@ -14,9 +14,10 @@ NEWS/ChangeLog for foreach
 
             R_FOREACH_DOPAR_LOCAL=TRUE|FALSE
 
-        with the R option taking its value from the environment variable. The current
-        default value is FALSE, which retains the pre-existing behaviour. It is
-        intended that over time this will be changed to TRUE.
+        with the R option taking its value from the environment variable. If both are
+        set, the former overrides the latter. The current default value is FALSE,
+        which retains the pre-existing behaviour. It is intended that over time this
+        will be changed to TRUE.
 
         A side-effect of this change is that the behaviour of %do% and %dopar% will
         (eventually) be different for a sequential backend. See
