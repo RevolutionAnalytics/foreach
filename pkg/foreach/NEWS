@@ -1,7 +1,7 @@
 NEWS/ChangeLog for foreach
 --------------------------
 
-1.4.5   2019-01-14
+1.4.8   2019-01-14
     o   Add preliminary support for evaluating %dopar% expressions in a local
         environment, when a sequential backend is used. This addresses a long-standing
         inconsistency in the behaviour of %dopar% with parallel and sequential
@@ -23,6 +23,9 @@ NEWS/ChangeLog for foreach
         (eventually) be different for a sequential backend. See
         https://github.com/RevolutionAnalytics/foreach/issues/3 for more discussion on
         this issue.
+
+1.4.7   2019-07-27
+    o   Maintainer change (Hong Ooi; hongooi@microsoft.com).
 
 1.4.4	2017-12-08
 	o	Changed test report path for compliance with CRAN policies.

@@ -1,10 +1,10 @@
 Package: foreach
 Type: Package
 Title: Provides Foreach Looping Construct
-Version: 1.4.7
+Version: 1.4.8
 Authors@R: c(person("Hong", "Ooi", role="cre", email="hongooi@microsoft.com"),
              person("Microsoft", role=c("aut", "cph")),
-			 person("Steve", "Weston", role="aut"))
+             person("Steve", "Weston", role="aut"))
 Description: Support for the foreach looping construct.  Foreach is an
         idiom that allows for iterating over elements in a collection,
         without the use of an explicit loop counter.  This package in
