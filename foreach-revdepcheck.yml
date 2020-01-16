@@ -1,0 +1,33 @@
+trigger: none
+
+variables:
+  R_LIBS_USER: '$(Agent.BuildDirectory)/R/library'
+  cranRepo: https://cloud.r-project.org
+  rockerImage: rocker/tidyverse:latest
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+container: $[variables['rockerImage']]
+
+steps:
+- bash: |
+    echo "options(repos = '$(cranRepo)')" > ~/.Rprofile
+    echo ".libPaths(c('$R_LIBS_USER', .libPaths()))" >> ~/.Rprofile
+    mkdir -p $R_LIBS_USER
+  displayName: 'Creating R library directory'
+
+- task: CacheBeta@0
+  inputs:
+    key: './DESCRIPTION | "$(rockerImage)" | "$(cranRepo)"'
+    path: '$(R_LIBS_USER)'
+  displayName: 'Caching packages'
+
+- bash: |
+    Rscript -e "pkgs <- c('remotes', 'rcmdcheck', 'revdepcheck'); if(length(find.package(pkgs, quiet=TRUE)) != length(pkgs)) install.packages(pkgs)"
+    Rscript -e "remotes::install_deps('pkg/foreach', dependencies=TRUE)"
+  displayName: 'Installing package dependencies'
+
+- bash: |
+    Rscript -e "revdepcheck::revdep_check('pkg/foreach')"
+  displayName: 'Checking reverse dependencies'
