@@ -1,34 +1,52 @@
 trigger: none
 
-variables:
-  R_LIBS_USER: '$(Agent.BuildDirectory)/R/library'
-  cranRepo: https://cloud.r-project.org
-  rockerImage: rocker/tidyverse:latest
+jobs:
+- job: master
+  timeoutInMinutes: 10000
 
-pool:
-  vmImage: 'ubuntu-latest'
+  variables:
+    R_LIBS_USER: '$(Agent.BuildDirectory)/R/library'
+    cranRepo: https://cloud.r-project.org
+    rockerImage: rocker/tidyverse:latest
 
-container: $[variables['rockerImage']]
+  pool:
+    vmImage: 'ubuntu-latest'
 
-steps:
-- bash: |
-    echo "options(repos = '$(cranRepo)')" > ~/.Rprofile
-    echo ".libPaths(c('$R_LIBS_USER', .libPaths()))" >> ~/.Rprofile
-    mkdir -p $R_LIBS_USER
-  displayName: 'Creating R library directory'
+  container: $[variables['rockerImage']]
 
-- task: CacheBeta@0
-  inputs:
-    key: 'pkg/foreach/DESCRIPTION | "$(rockerImage)" | "$(cranRepo)"'
-    path: '$(R_LIBS_USER)'
-  displayName: 'Caching packages'
+  steps:
+  - bash: |
+      echo "options(repos = '$(cranRepo)')" > ~/.Rprofile
+      echo ".libPaths(c('$R_LIBS_USER', .libPaths()))" >> ~/.Rprofile
+      mkdir -p $R_LIBS_USER
+    displayName: 'Creating R library directory'
 
-- bash: |
-    Rscript -e "pkgs <- c('remotes', 'rcmdcheck'); if(length(find.package(pkgs, quiet=TRUE)) != length(pkgs)) install.packages(pkgs)"
-    Rscript -e "remotes::install_github('r-lib/revdepcheck')"
-    Rscript -e "remotes::install_deps('pkg/foreach', dependencies=TRUE)"
-  displayName: 'Installing package dependencies'
+  - task: CacheBeta@0
+    inputs:
+      key: 'pkg/foreach/DESCRIPTION | "$(rockerImage)" | "$(cranRepo)"'
+      path: '$(R_LIBS_USER)'
+    displayName: 'Caching packages'
 
-- bash: |
-    Rscript -e "revdepcheck::revdep_check('pkg/foreach')"
-  displayName: 'Checking reverse dependencies'
+  - bash: |
+      Rscript -e "pkgs <- c('remotes', 'rcmdcheck'); if(length(find.package(pkgs, quiet=TRUE)) != length(pkgs)) install.packages(pkgs)"
+      Rscript -e "remotes::install_github('r-lib/revdepcheck')"
+      Rscript -e "remotes::install_deps('pkg/foreach', dependencies=TRUE)"
+    displayName: 'Installing package dependencies'
+
+  - bash: |
+      export R_FOREACH_DOPAR_LOCAL=FALSE
+      Rscript -e "revdepcheck::revdep_check('pkg/foreach', num_workers=2)"
+      printf '**/*\n!*.md\n' > pkg/foreach/revdep/.artifactignore
+    displayName: 'Checking reverse dependencies 1'
+
+  - publish: ./pkg/foreach/revdep
+    artifact: revdep_result1
+
+  - bash: |
+      export R_FOREACH_DOPAR_LOCAL=TRUE
+      Rscript -e "revdepcheck::revdep_reset('pkg/foreach'); revdepcheck::revdep_check('pkg/foreach', num_workers=2)"
+    displayName: 'Checking reverse dependencies 2'
+
+  - publish: ./pkg/foreach/revdep
+    artifact: revdep_result2
+
