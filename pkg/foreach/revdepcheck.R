@@ -2,7 +2,7 @@ library(revdepcheck)
 
 check_and_save <- function(local_opt)
 {
-    destpath <- paste0("../../revdep/foreach_localdopar_", local_opt)
+    destpath <- paste0("../../revdep/foreach_doparlocal_", local_opt)
     if(dir.exists(destpath))
         unlink(destpath, recursive=TRUE)
     dir.create(destpath, recursive=TRUE)
