@@ -10,7 +10,7 @@
 |collate  |C.UTF-8                      |
 |ctype    |C.UTF-8                      |
 |tz       |Etc/UTC                      |
-|date     |2020-01-25                   |
+|date     |2020-01-26                   |
 
 # Dependencies
 
@@ -34,5 +34,5 @@
 
 |package                          |version |error  |warning |note |
 |:--------------------------------|:-------|:------|:-------|:----|
-|[doFuture](problems.md#dofuture) |0.9.0   |__+1__ |        |     |
+|[DepecheR](problems.md#depecher) |1.0.3   |__+1__ |        |2    |
 
