@@ -17,7 +17,7 @@ test01 <- function() {
 
 # test data.frame iterator with foreach
 test02 <- function() {
-  d <- data.frame(a=1:10,b=11:20,c=21:30)
+  d <- data.frame(a=1:10, b=11:20, c=21:30)
   ed <- data.matrix(d)
 
   x <- foreach(col=iter(d, by='col'), .combine='cbind') %do% col
@@ -37,16 +37,16 @@ test02 <- function() {
 
 # test function iterator with foreach and %do%
 test03 <- function() {
-  
+
   func <- function() {
-    y = NULL
+    y <- NULL
     repeat {
-      x = rnorm(1)
+      x <- rnorm(1)
       if (x < -3.0) stop('StopIteration')
       if (10 == length(y))
         break
       else
-        if (0 < x) y = c(y, x)
+        if (0 < x) y <- c(y, x)
     }
     y
   }
@@ -62,14 +62,14 @@ test03 <- function() {
 test04 <- function() {
 
   func <- function() {
-    y = NULL
+    y <- NULL
     repeat {
-      x = rnorm(1)
+      x <- rnorm(1)
       if (x < -3.0) stop('StopIteration')
       if (10 == length(y))
         break
       else
-        if (0 < x) y = c(y, x)
+        if (0 < x) y <- c(y, x)
     }
     y
   }

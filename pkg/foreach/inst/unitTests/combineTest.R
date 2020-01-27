@@ -2,19 +2,19 @@
 test01 <- function() {
   m <- matrix(rnorm(25 * 16), 25)
 
-  x <- foreach(i=1:ncol(m), .combine='cbind') %do% m[,i]
+  x <- foreach(i=seq_len(ncol(m)), .combine='cbind') %do% m[, i]
   dimnames(x) <- NULL
   checkEquals(m, x)
 
-  x <- foreach(i=1:ncol(m), .combine='cbind') %dopar% m[,i]
+  x <- foreach(i=seq_len(ncol(m)), .combine='cbind') %dopar% m[, i]
   dimnames(x) <- NULL
   checkEquals(m, x)
 
-  x <- foreach(i=1:nrow(m), .combine='rbind') %do% m[i,]
+  x <- foreach(i=seq_len(nrow(m)), .combine='rbind') %do% m[i, ]
   dimnames(x) <- NULL
   checkEquals(m, x)
 
-  x <- foreach(i=1:nrow(m), .combine='rbind') %dopar% m[i,]
+  x <- foreach(i=seq_len(nrow(m)), .combine='rbind') %dopar% m[i, ]
   dimnames(x) <- NULL
   checkEquals(m, x)
 }

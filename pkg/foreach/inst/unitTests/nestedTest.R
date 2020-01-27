@@ -1,36 +1,36 @@
 # Test nesting of "%do% and %dopar% in 01, 02, 03, and 04.
 
 test01 <- function() {
-  y <- foreach(j=seq(0,90,by=10), .combine='c', .packages='foreach') %do% {
-    foreach(k=seq(1,10), .combine='c') %do% {
+  y <- foreach(j=seq(0, 90, by=10), .combine='c', .packages='foreach') %do% {
+    foreach(k=seq(1, 10), .combine='c') %do% {
       (j+k)
     }
   }
-  checkEquals(y,1:100)
+  checkEquals(y, 1:100)
 }
 test02 <- function() {
-  y <- foreach(j=seq(0,90,by=10), .combine='c', .packages='foreach') %do% {
-    foreach(k=seq(1,10), .combine='c') %dopar% {
+  y <- foreach(j=seq(0, 90, by=10), .combine='c', .packages='foreach') %do% {
+    foreach(k=seq(1, 10), .combine='c') %dopar% {
       (j+k)
     }
   }
-  checkEquals(y,1:100)
+  checkEquals(y, 1:100)
 }
 test03 <- function() {
-  y <- foreach(j=seq(0,90,by=10), .combine='c', .packages='foreach') %dopar% {
-    foreach(k=seq(1,10), .combine='c') %do% {
+  y <- foreach(j=seq(0, 90, by=10), .combine='c', .packages='foreach') %dopar% {
+    foreach(k=seq(1, 10), .combine='c') %do% {
       (j+k)
     }
   }
-  checkEquals(y,1:100)
+  checkEquals(y, 1:100)
 }
 test04 <- function() {
-  y <- foreach(j=seq(0,90,by=10), .combine='c', .packages='foreach') %dopar% {
-    foreach(k=seq(1,10), .combine='c') %dopar% {
+  y <- foreach(j=seq(0, 90, by=10), .combine='c', .packages='foreach') %dopar% {
+    foreach(k=seq(1, 10), .combine='c') %dopar% {
       (j+k)
     }
   }
-  checkEquals(y,1:100)
+  checkEquals(y, 1:100)
 }
 
 # test05 <- function() {

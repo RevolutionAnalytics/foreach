@@ -25,13 +25,13 @@ setDoPar <- function(fun, data=NULL, info=function(data, item) NULL) {
       assign('info', info, pos=.foreachGlobals, inherits=FALSE)
     }, error = function(e) {
          if (exists('fun', where=.foreachGlobals, inherits=FALSE))
-		remove('fun', envir=.foreachGlobals)
+    remove('fun', envir=.foreachGlobals)
          if (exists('data', where=.foreachGlobals, inherits=FALSE))
-		remove('data', envir=.foreachGlobals)
+    remove('data', envir=.foreachGlobals)
          if (exists('info', where=.foreachGlobals, inherits=FALSE))
-		remove('info', envir=.foreachGlobals)
+    remove('info', envir=.foreachGlobals)
          e
-	})
+  })
 }
 
 
@@ -44,13 +44,13 @@ setDoSeq <- function(fun, data=NULL, info=function(data, item) NULL) {
        assign('seqInfo', info, pos=.foreachGlobals, inherits=FALSE)
     }, error = function(e) {
          if (exists('fun', where=.foreachGlobals, inherits=FALSE))
-		remove('fun', envir = .foreachGlobals)
+  remove('fun', envir = .foreachGlobals)
          if (exists('data', where=.foreachGlobals, inherits=FALSE))
-		remove('data', envir = .foreachGlobals)
+  remove('data', envir = .foreachGlobals)
          if (exists('info', where=.foreachGlobals, inherits=FALSE))
-		remove('info', envir = .foreachGlobals)
+  remove('info', envir = .foreachGlobals)
          e
-        })
+  })
 }
 
 # this explicitly registers a sequential backend for do and dopar.
