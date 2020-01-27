@@ -28,8 +28,8 @@ Run `revdep_details(,"DepecheR")` for more info
         |======================================================================| 100%
       ══ testthat results  ═══════════════════════════════════════════════════════════
       [ OK: 21 | SKIPPED: 0 | WARNINGS: 0 | FAILED: 2 ]
-      1. Failure: depeche expected output (@test_depeche.R#7) 
-      2. Failure: depeche expected output (@test_depeche.R#8) 
+      1. Failure: dOptPenalty expected output (@test_dOptPenalty.R#20) 
+      2. Failure: dOptPenalty expected output (@test_dOptPenalty.R#21) 
       
       Error: testthat unit tests failed
       Execution halted

@@ -30,11 +30,9 @@
 |permGPU |0.14.9  |1     |        |     |
 |survSNP |0.24    |1     |        |     |
 
-## New problems (3)
+## New problems (1)
 
-|package                                      |version |error  |warning |note |
-|:--------------------------------------------|:-------|:------|:-------|:----|
-|[Counterfactual](problems.md#counterfactual) |1.1     |__+1__ |        |     |
-|[MineICA](problems.md#mineica)               |1.24.0  |__+1__ |        |4    |
-|[turboEM](problems.md#turboem)               |2020.1  |__+1__ |        |     |
+|package                        |version |error  |warning |note |
+|:------------------------------|:-------|:------|:-------|:----|
+|[MineICA](problems.md#mineica) |1.24.0  |__+1__ |        |4    |
 

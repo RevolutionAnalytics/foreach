@@ -41,7 +41,6 @@ get_revdep_list <- function(cmd_args)
 
     pkglist <- c(cran_revdeps$package, bioc_revdeps$Package)
     cat(pkglist, "\n", file="../../revdep/pkglist.txt")
-    return(pkglist)
     if(is.infinite(top))
         NA
     else pkglist
@@ -58,9 +57,9 @@ check_and_save <- function(pkglist, local_opt)
     Sys.setenv(R_FOREACH_DOPAR_LOCAL=as.character(local_opt))
     options(foreachDoparLocal=local_opt)
 
-    if(is.na(pkglist))
+    if(length(pkglist) == 1 && is.na(pkglist))
         revdep_reset()
-    else lapply(pkglist, revdep_add)
+    else revdep_add(packages=pkglist)
 
     revdep_check(
         num_workers=12,
@@ -70,7 +69,7 @@ check_and_save <- function(pkglist, local_opt)
     revdep_report()
 
     mds <- c("revdep/README.md", "revdep/problems.md", "revdep/failures.md")
-    if(!file.exists(mds))
+    if(!all(file.exists(mds)))
     {
         writeLines("Error: Revdep check results not found", paste0("error_", local_opt))
         stop()

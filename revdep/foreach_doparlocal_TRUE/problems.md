@@ -1,37 +1,3 @@
-# Counterfactual
-
-<details>
-
-* Version: 1.1
-* Source code: https://github.com/cran/Counterfactual
-* Date/Publication: 2017-07-19 16:00:24 UTC
-* Number of recursive dependencies: 79
-
-Run `revdep_details(,"Counterfactual")` for more info
-
-</details>
-
-## Newly broken
-
-*   checking running R code from vignettes ...
-    ```
-      ‘vignette.Rnw’... failed
-     ERROR
-    Errors in running code in vignettes:
-    when running code in ‘vignette.Rnw’
-      ...
-    
-    > qrres <- counterfactual(foodexp ~ income, counterfactual_var = counter_income, 
-    +     transformation = TRUE, sepcore = TRUE, ncore = 2)
-    cores used= 2 
-                                      Warning in socketConnection("localhost", port = port, server = TRUE, blocking = TRUE,  :
-      port 11559 cannot be opened
-    
-      When sourcing ‘vignette.R’:
-    Error: cannot open the connection
-    Execution halted
-    ```
-
 # MineICA
 
 <details>
@@ -39,7 +5,7 @@ Run `revdep_details(,"Counterfactual")` for more info
 * Version: 1.24.0
 * Source code: https://github.com/cran/MineICA
 * Date/Publication: 2019-05-02
-* Number of recursive dependencies: 188
+* Number of recursive dependencies: 185
 
 Run `revdep_details(,"MineICA")` for more info
 
@@ -140,40 +106,5 @@ Run `revdep_details(,"MineICA")` for more info
                  "write.table")
     to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
     contains 'methods').
-    ```
-
-# turboEM
-
-<details>
-
-* Version: 2020.1
-* Source code: https://github.com/cran/turboEM
-* URL: http://www.jhsph.edu/agingandhealth/People/Faculty_personal_pages/Varadhan.html
-* Date/Publication: 2020-01-13 16:40:02 UTC
-* Number of recursive dependencies: 11
-
-Run `revdep_details(,"turboEM")` for more info
-
-</details>
-
-## Newly broken
-
-*   checking running R code from vignettes ...
-    ```
-      ‘turboEM.Rnw’... failed
-     ERROR
-    Errors in running code in vignettes:
-    when running code in ‘turboEM.Rnw’
-      ...
-    
-    > cl <- makeCluster(2)
-    
-    > simtime.par <- system.time(results.par <- turboSim(parmat = starting.values, 
-    +     fixptfn = fixptfn, objfn = objfn, method = method, boundary = bo .... [TRUNCATED] 
-    Timing stopped at: 0.007 0 1.938
-    
-      When sourcing ‘turboEM.R’:
-    Error: one node produced an error: object '.doSnowGlobals' not found
-    Execution halted
     ```
 
