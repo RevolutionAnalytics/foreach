@@ -8,13 +8,8 @@ library(dplyr)
 
 options(repos=c(getOption("repos"), remotes::bioc_install_repos()))
 
-today <- Sys.Date()
-fromdate <- strftime(today - 91, "%Y-%m-%d")
-todate <- strftime(today - 1, "%Y-%m-%d")
-
-get_revdep_list <- function()
+get_revdep_list <- function(cmd_args)
 {
-    cmd_args <- commandArgs(trailingOnly=TRUE)
     if(length(cmd_args) == 1 && !is.na(as.numeric(cmd_args)))
         top <- as.numeric(cmd_args)
     else if(length(cmd_args) == 0)
@@ -38,13 +33,15 @@ get_revdep_list <- function()
         arrange(desc(count)) %>%
         head(top*nrow(.))
 
-    bioc_revdeps <- read.delim("https://bioconductor.org/packages/stats/bioc/bioc_pkg_scores.tab") %>%
+    bioc_revdeps <- read.delim("https://bioconductor.org/packages/stats/bioc/bioc_pkg_scores.tab",
+                               stringsAsFactors=FALSE) %>%
         filter(Package %in% all_revdeps) %>%
         arrange(desc(Download_score)) %>%
         head(top*nrow(.))
 
     pkglist <- c(cran_revdeps$package, bioc_revdeps$Package)
     cat(pkglist, "\n", file="../../revdep/pkglist.txt")
+    return(pkglist)
     if(is.infinite(top))
         NA
     else pkglist
@@ -85,8 +82,13 @@ check_and_save <- function(pkglist, local_opt)
 
 if(!dir.exists("../../revdep")) dir.create("../../revdep")
 
-pkglist <- get_revdep_list()
-print(pkglist)
+today <- Sys.Date()
+fromdate <- strftime(today - 91, "%Y-%m-%d")
+todate <- strftime(today - 1, "%Y-%m-%d")
+
+cmd_args <- commandArgs(trailingOnly=TRUE)
+
+pkglist <- get_revdep_list(cmd_args)
 
 check_and_save(pkglist, FALSE)
 check_and_save(pkglist, TRUE)
