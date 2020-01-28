@@ -14,46 +14,26 @@
 # limitations under the License.
 #
 
+#' @include foreach.R
+
 .foreachGlobals <- new.env(parent=emptyenv())
 
-# this is called to register a parallel backend
-setDoPar <- function(fun, data=NULL, info=function(data, item) NULL) {
-  tryCatch(
-    {
-      assign('fun', fun, pos=.foreachGlobals, inherits=FALSE)
-      assign('data', data, pos=.foreachGlobals, inherits=FALSE)
-      assign('info', info, pos=.foreachGlobals, inherits=FALSE)
-    }, error = function(e) {
-         if (exists('fun', where=.foreachGlobals, inherits=FALSE))
-    remove('fun', envir=.foreachGlobals)
-         if (exists('data', where=.foreachGlobals, inherits=FALSE))
-    remove('data', envir=.foreachGlobals)
-         if (exists('info', where=.foreachGlobals, inherits=FALSE))
-    remove('info', envir=.foreachGlobals)
-         e
-  })
-}
-
-
-# this is called to register a sequential backend
-setDoSeq <- function(fun, data=NULL, info=function(data, item) NULL) {
-  tryCatch(
-    {
-       assign('seqFun', fun, pos=.foreachGlobals, inherits=FALSE)
-       assign('seqData', data, pos=.foreachGlobals, inherits=FALSE)
-       assign('seqInfo', info, pos=.foreachGlobals, inherits=FALSE)
-    }, error = function(e) {
-         if (exists('fun', where=.foreachGlobals, inherits=FALSE))
-  remove('fun', envir = .foreachGlobals)
-         if (exists('data', where=.foreachGlobals, inherits=FALSE))
-  remove('data', envir = .foreachGlobals)
-         if (exists('info', where=.foreachGlobals, inherits=FALSE))
-  remove('info', envir = .foreachGlobals)
-         e
-  })
-}
-
 # this explicitly registers a sequential backend for do and dopar.
+#' @title registerDoSEQ
+#' @description
+#' The `registerDoSEQ` function is used to explicitly register
+#' a sequential parallel backend with the foreach package.
+#' This will prevent a warning message from being issued if the
+#' `%dopar%` function is called and no parallel backend has
+#' been registered.
+#'
+#' @seealso
+#' [`doSNOW::registerDoSNOW`]
+#' @examples
+#' # specify that %dopar% should run sequentially
+#' registerDoSEQ()
+#' @keywords utilities
+#' @export
 registerDoSEQ <- function() {
   setDoPar(doSEQ, NULL, info)
   setDoSeq(doSEQ, NULL, info)
@@ -68,99 +48,8 @@ info <- function(data, item) {
          NULL)
 }
 
-# this returns a logical value indicating if a sequential backend
-# has been registered or not
-getDoSeqRegistered <- function() {
-  exists('seqFun', where=.foreachGlobals, inherits=FALSE)
-}
-
-# this returns a logical value indicating if a parallel backend
-# has been registered or not
-getDoParRegistered <- function() {
-  exists('fun', where=.foreachGlobals, inherits=FALSE)
-}
-
-# this returns the number of workers used by the currently registered
-# sequential backend
-getDoSeqWorkers <- function() {
-  wc <- if (exists('seqInfo', where=.foreachGlobals, inherits=FALSE))
-    .foreachGlobals$seqInfo(.foreachGlobals$seqData, 'workers')
-  else
-    NULL
-
-  # interpret a NULL as a single worker, but the backend
-  # can return NA without interference
-  if (is.null(wc)) 1L else wc
-}
-
-# this returns the number of workers used by the currently registered
-# parallel backend
-getDoParWorkers <- function() {
-  wc <- if (exists('info', where=.foreachGlobals, inherits=FALSE))
-    .foreachGlobals$info(.foreachGlobals$data, 'workers')
-  else
-    NULL
-
-  # interpret a NULL as a single worker, but the backend
-  # can return NA without interference
-  if (is.null(wc)) 1L else wc
-}
-
-# this returns the name of the currently registered sequential backend
-getDoSeqName <- function() {
-  if (exists('seqInfo', where=.foreachGlobals, inherits=FALSE))
-    .foreachGlobals$seqInfo(.foreachGlobals$seqData, 'name')
-  else
-    NULL
-}
-
-# this returns the name of the currently registered parallel backend
-getDoParName <- function() {
-  if (exists('info', where=.foreachGlobals, inherits=FALSE))
-    .foreachGlobals$info(.foreachGlobals$data, 'name')
-  else
-    NULL
-}
-
-# this returns the version of the currently registered sequential backend
-getDoSeqVersion <- function() {
-  if (exists('seqInfo', where=.foreachGlobals, inherits=FALSE))
-    .foreachGlobals$seqInfo(.foreachGlobals$seqData, 'version')
-  else
-    NULL
-}
-
-# this returns the version of the currently registered parallel backend
-getDoParVersion <- function() {
-  if (exists('info', where=.foreachGlobals, inherits=FALSE))
-    .foreachGlobals$info(.foreachGlobals$data, 'version')
-  else
-    NULL
-}
-
-# used internally to get the currently registered parallel backend
-getDoSeq <- function() {
-  if (exists('seqFun', where=.foreachGlobals, inherits=FALSE)) {
-    list(fun=.foreachGlobals$seqFun, data=.foreachGlobals$seqdata)
-  } else {
-    list(fun=doSEQ, data=NULL)
-  }
-}
-
-# used internally to get the currently registered parallel backend
-getDoPar <- function() {
-  if (exists('fun', where=.foreachGlobals, inherits=FALSE)) {
-    list(fun=.foreachGlobals$fun, data=.foreachGlobals$data)
-  } else {
-    if (!exists('parWarningIssued', where=.foreachGlobals, inherits=FALSE)) {
-      warning('executing %dopar% sequentially: no parallel backend registered',
-              call.=FALSE)
-      assign('parWarningIssued', TRUE, pos=.foreachGlobals, inherits=FALSE)
-    }
-    list(fun=doSEQ, data=NULL)
-  }
-}
-
+#' @export
+#' @rdname foreach
 '%do%' <- function(obj, ex) {
   e <- getDoSeq()
 
@@ -171,6 +60,8 @@ getDoPar <- function() {
   e$fun(obj, substitute(ex), parent.frame(), e$data)
 }
 
+#' @export
+#' @rdname foreach
 '%dopar%' <- function(obj, ex) {
   e <- getDoPar()
   e$fun(obj, substitute(ex), parent.frame(), e$data)

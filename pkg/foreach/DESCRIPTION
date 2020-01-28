@@ -19,4 +19,19 @@ Depends: R (>= 2.5.0)
 Imports: codetools, utils, iterators
 Suggests: randomForest
 Enhances: compiler, doMC, RUnit, doParallel
+Roxygen: list(markdown=TRUE)
 License: Apache License (== 2.0)
+RoxygenNote: 6.1.1
+Collate: 
+    'acc.R'
+    'foreach.R'
+    'do.R'
+    'foreach-pkg.R'
+    'getDoPar.R'
+    'getDoSeq.R'
+    'getsyms.R'
+    'iter.R'
+    'nextElem.R'
+    'onLoad.R'
+    'set.R'
+    'times.R'

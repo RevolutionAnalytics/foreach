@@ -16,6 +16,8 @@
 
 # a simple convenience function for use with %do% and %dopar%
 # inspired by Daniel Kaplan of Macalester College
+#' @export
+#' @rdname foreach
 times <- function(n) {
   if (!is.numeric(n) || length(n) != 1)
     stop('n must be a numeric value')

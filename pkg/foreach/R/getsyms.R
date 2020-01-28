@@ -74,6 +74,8 @@ expandsyms <- function(syms, env, good, bad) {
   gather(lapply(syms, fun, good, bad))$good
 }
 
+#' @export
+#' @rdname foreach-ext
 getexports <- function(ex, e, env, good=character(0), bad=character(0)) {
   syms <- getsyms(ex)
   syms <- expandsyms(syms, env, good, bad)

@@ -14,6 +14,31 @@
 # limitations under the License.
 #
 
+#' foreach extension functions
+#'
+#' These functions are used to write parallel backends for the `foreach`
+#' package.  They should not be used from normal scripts or packages that use
+#' the `foreach` package.
+#' @param it foreach iterator.
+#' @param ex call object to analyze.
+#' @param e local environment of the call object.
+#' @param env exported environment in which call object will be evaluated.
+#' @param good names of symbols that are being exported.
+#' @param bad names of symbols that are not being exported.
+#' @param obj foreach iterator object.
+#' @param result task result to accumulate.
+#' @param tag tag of task result to accumulate.
+#' @param ... unused.
+#'
+#' @section Note:
+#' These functions are likely to change in future versions of the
+#' `foreach` package.  When they become more stable, they will
+#' be documented.
+#'
+#' @name foreach-ext
+#' @keywords utilities
+#' @export
+#' @rdname foreach-ext
 makeAccum <- function(it) {
   # define and return the accumulator function that will be
   # passed to eachElem
