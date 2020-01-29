@@ -10,7 +10,7 @@ options(repos=c(getOption("repos"), remotes::bioc_install_repos()))
 
 get_revdep_list <- function(cmd_args)
 {
-    if(length(cmd_args) == 1 && !is.na(as.numeric(cmd_args)))
+    if(length(cmd_args) == 1 && !is.na(suppressWarnings(as.numeric(cmd_args))))
         top <- as.numeric(cmd_args)
     else if(length(cmd_args) == 0)
         top <- Inf
