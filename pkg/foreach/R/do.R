@@ -15,8 +15,7 @@
 #
 
 #' @include foreach.R
-
-.foreachGlobals <- new.env(parent=emptyenv())
+NULL
 
 # this explicitly registers a sequential backend for do and dopar.
 #' @title registerDoSEQ

@@ -23,9 +23,10 @@ Roxygen: list(markdown=TRUE)
 License: Apache License (== 2.0)
 RoxygenNote: 6.1.1
 Collate: 
-    'acc.R'
+    'callCombine.R'
     'foreach.R'
     'do.R'
+    'foreach-ext.R'
     'foreach-pkg.R'
     'getDoPar.R'
     'getDoSeq.R'
@@ -33,5 +34,7 @@ Collate:
     'iter.R'
     'nextElem.R'
     'onLoad.R'
-    'set.R'
+    'setDoPar.R'
+    'setDoSeq.R'
     'times.R'
+    'utils.R'

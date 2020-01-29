@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+.foreachGlobals <- new.env(parent=emptyenv())
+
 .onLoad <- function(libname, pkgname) {
   local <- as.logical(Sys.getenv("R_FOREACH_DOPAR_LOCAL", "FALSE"))
   local <- getOption("foreachDoparLocal", local)
