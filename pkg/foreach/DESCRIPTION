@@ -13,12 +13,17 @@ Description: Support for the foreach looping construct.  Foreach is an
         standard lapply function, but doesn't require the evaluation
         of a function.  Using foreach without side effects also
         facilitates executing the loop in parallel.
-URL: https://github.com/RevolutionAnalytics/foreach
+URL: https://github.com/RevolutionAnalytics/foreach/pkg/foreach
 BugReports: https://github.com/RevolutionAnalytics/foreach/issues
 Depends: R (>= 2.5.0)
 Imports: codetools, utils, iterators
-Suggests: randomForest
-Enhances: compiler, doMC, RUnit, doParallel
+Suggests: 
+    randomForest,
+    doMC,
+    doParallel,
+    doSNOW,
+    snow,
+    testthat
 Roxygen: list(markdown=TRUE)
 License: Apache License (== 2.0)
 RoxygenNote: 6.1.1

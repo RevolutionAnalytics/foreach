@@ -1,18 +1,20 @@
-test01 <- function() {
+context("Foreach")
+
+test_that("foreach works", {
   x <- 1:3
   actual <- foreach(i=x) %do% i
-  checkEquals(actual, as.list(x))
+  expect_identical(actual, as.list(x))
   actual <- foreach(i=x, .combine='c') %do% i
-  checkEquals(actual, x)
-}
+  expect_identical(actual, x)
+})
 
-test02 <- function() {
+test_that("foreach works 2", {
   x <- 1:101
   actual <- foreach(i=x, .combine='+') %dopar% i
-  checkEquals(actual, sum(x))
-}
+  expect_equal(actual, sum(x))
+})
 
-test03 <- function() {
+test_that("foreach works 3", {
   x <- 1:3
   y <- 2:0
   for (i in 1:3) {
@@ -20,6 +22,6 @@ test03 <- function() {
       Sys.sleep(y[i])
       i
     }
-    checkEquals(actual, x)
+    expect_equal(actual, x)
   }
-}
+})

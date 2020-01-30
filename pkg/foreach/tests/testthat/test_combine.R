@@ -1,56 +1,56 @@
-# test cbind and rbind via .combine option
-test01 <- function() {
+context("Combining")
+
+test_that("cbind and rbind work", {
   m <- matrix(rnorm(25 * 16), 25)
 
   x <- foreach(i=seq_len(ncol(m)), .combine='cbind') %do% m[, i]
   dimnames(x) <- NULL
-  checkEquals(m, x)
+  expect_identical(m, x)
 
   x <- foreach(i=seq_len(ncol(m)), .combine='cbind') %dopar% m[, i]
   dimnames(x) <- NULL
-  checkEquals(m, x)
+  expect_identical(m, x)
 
   x <- foreach(i=seq_len(nrow(m)), .combine='rbind') %do% m[i, ]
   dimnames(x) <- NULL
-  checkEquals(m, x)
+  expect_identical(m, x)
 
   x <- foreach(i=seq_len(nrow(m)), .combine='rbind') %dopar% m[i, ]
   dimnames(x) <- NULL
-  checkEquals(m, x)
-}
+  expect_identical(m, x)
+})
 
-# test arithmetic operations via .combine option
-test02 <- function() {
+test_that("Arithmetic ops work", {
   x <- rnorm(100)
 
   d <- foreach(i=x, .combine='+') %do% i
-  checkEquals(d, sum(x))
+  expect_equal(d, sum(x))
 
   d <- foreach(i=x, .combine='+') %dopar% i
-  checkEquals(d, sum(x))
+  expect_equal(d, sum(x))
 
   d <- foreach(i=x, .combine='*') %do% i
-  checkEquals(d, prod(x))
+  expect_equal(d, prod(x))
 
   d <- foreach(i=x, .combine='*') %dopar% i
-  checkEquals(d, prod(x))
-}
+  expect_equal(d, prod(x))
+})
 
-test03 <- function() {
+test_that("Custom combining function works", {
   x <- 1:10
   adder <- function(...) {
     sum(...)
   }
 
   d <- foreach(i=x, .combine=adder, .multicombine=TRUE) %dopar% i
-  checkEquals(d, sum(x))
+  expect_equal(d, sum(x))
 
   d <- foreach(i=x, .combine=adder, .multicombine=FALSE) %dopar% i
-  checkEquals(d, sum(x))
+  expect_equal(d, sum(x))
 
   d <- foreach(i=x, .combine=adder, .multicombine=TRUE) %do% i
-  checkEquals(d, sum(x))
+  expect_equal(d, sum(x))
 
   d <- foreach(i=x, .combine=adder, .multicombine=FALSE) %do% i
-  checkEquals(d, sum(x))
-}
+  expect_equal(d, sum(x))
+})

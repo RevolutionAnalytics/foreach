@@ -1,4 +1,6 @@
-test01 <- function() {
+context("When")
+
+test_that("when works", {
   actual <-
     foreach(i=1:5) %:%
       when(i %% 2 == 1) %:%
@@ -8,7 +10,7 @@ test01 <- function() {
   expected <- list(list(c(1, 3), c(1, 5)),
                    list(c(3, 1), c(3, 5)),
                    list(c(5, 1), c(5, 3)))
-  checkEquals(actual, expected)
+  expect_equal(actual, expected)
 
   actual <-
     foreach(i=1:5, .combine='c') %:%
@@ -19,10 +21,10 @@ test01 <- function() {
   expected <- list(c(1, 3), c(1, 5),
                    c(3, 1), c(3, 5),
                    c(5, 1), c(5, 3))
-  checkEquals(actual, expected)
-}
+  expect_equal(actual, expected)
+})
 
-test02 <- function() {
+test_that("when works 2", {
   qsort <- function(x) {
     n <- length(x)
     if (n == 0) {
@@ -38,5 +40,5 @@ test02 <- function() {
   x <- runif(100)
   a <- qsort(x)
   b <- sort(x)
-  checkEquals(a, b)
-}
+  expect_identical(a, b)
+})
