@@ -23,7 +23,10 @@ Suggests:
     doParallel,
     doSNOW,
     snow,
-    testthat
+    testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
 Roxygen: list(markdown=TRUE)
 License: Apache License (== 2.0)
 RoxygenNote: 6.1.1
