@@ -2,7 +2,7 @@ NEWS/ChangeLog for foreach
 --------------------------
 
 1.4.8   2019-01-14
-    o   Add preliminary support for evaluating %dopar% expressions in a local
+    o   Added preliminary support for evaluating %dopar% expressions in a local
         environment, when a sequential backend is used. This addresses a long-standing
         inconsistency in the behaviour of %dopar% with parallel and sequential
         backends, where the latter would evaluate the loop body in the global
@@ -23,6 +23,12 @@ NEWS/ChangeLog for foreach
         (eventually) be different for a sequential backend. See
         https://github.com/RevolutionAnalytics/foreach/issues/3 for more discussion on
         this issue.
+
+    o   Updated tooling used for development. None of these changes should have any
+        effect on package behaviour.
+        o Use Roxygen for documentation
+        o Convert vignettes to Rmarkdown format (and output HTML instead of PDF)
+        o Use testthat for unit tests
 
 1.4.7   2019-07-27
     o   Maintainer change (Hong Ooi; hongooi@microsoft.com).
