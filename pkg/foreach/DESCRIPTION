@@ -29,7 +29,7 @@ Suggests:
 VignetteBuilder: knitr
 Roxygen: list(markdown=TRUE)
 License: Apache License (== 2.0)
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 Collate: 
     'callCombine.R'
     'foreach.R'

@@ -32,13 +32,13 @@ registered doSeq backend.  A \code{NULL} is returned if no backend is
 registered.
 }
 \examples{
-cat(sprintf('\%s backend is registered\\n',
+cat(sprintf('\%s backend is registered\n',
             if(getDoSeqRegistered()) 'A' else 'No'))
-cat(sprintf('Running with \%d worker(s)\\n', getDoSeqWorkers()))
+cat(sprintf('Running with \%d worker(s)\n', getDoSeqWorkers()))
 (name <- getDoSeqName())
 (ver <- getDoSeqVersion())
 if (getDoSeqRegistered())
-  cat(sprintf('Currently using \%s [\%s]\\n', name, ver))
+  cat(sprintf('Currently using \%s [\%s]\n', name, ver))
 
 }
 \keyword{utilities}

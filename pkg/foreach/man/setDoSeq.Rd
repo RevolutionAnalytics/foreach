@@ -7,7 +7,7 @@
 setDoSeq(fun, data = NULL, info = function(data, item) NULL)
 }
 \arguments{
-\item{fun}{A function that implements the functionality of \code{\%dopar\%}.}
+\item{fun}{A function that implements the functionality of \verb{\%dopar\%}.}
 
 \item{data}{Data to be passed to the registered function.}
 

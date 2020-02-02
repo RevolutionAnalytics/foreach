@@ -33,13 +33,13 @@ registered doPar backend.  A \code{NULL} is returned if no backend is
 registered.
 }
 \examples{
-cat(sprintf('\%s backend is registered\\n',
+cat(sprintf('\%s backend is registered\n',
             if(getDoParRegistered()) 'A' else 'No'))
-cat(sprintf('Running with \%d worker(s)\\n', getDoParWorkers()))
+cat(sprintf('Running with \%d worker(s)\n', getDoParWorkers()))
 (name <- getDoParName())
 (ver <- getDoParVersion())
 if (getDoParRegistered())
-  cat(sprintf('Currently using \%s [\%s]\\n', name, ver))
+  cat(sprintf('Currently using \%s [\%s]\n', name, ver))
 
 }
 \keyword{utilities}

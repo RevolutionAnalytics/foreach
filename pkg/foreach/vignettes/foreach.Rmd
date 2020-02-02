@@ -455,7 +455,7 @@ copy `x` the way that `%dopar%` does.
 
 ## List Comprehensions
 
-If you're familar with the Python programming language, it may have
+If you're familiar with the Python programming language, it may have
 occurred to you that the `foreach` package provides something
 that is not too different from Python's _list comprehensions_.
 In fact, the `foreach` package also includes a function called

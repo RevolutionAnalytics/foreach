@@ -9,10 +9,20 @@
 \alias{times}
 \title{foreach}
 \usage{
-foreach(..., .combine, .init, .final = NULL, .inorder = TRUE,
-  .multicombine = FALSE, .maxcombine = if (.multicombine) 100 else 2,
-  .errorhandling = c("stop", "remove", "pass"), .packages = NULL,
-  .export = NULL, .noexport = NULL, .verbose = FALSE)
+foreach(
+  ...,
+  .combine,
+  .init,
+  .final = NULL,
+  .inorder = TRUE,
+  .multicombine = FALSE,
+  .maxcombine = if (.multicombine) 100 else 2,
+  .errorhandling = c("stop", "remove", "pass"),
+  .packages = NULL,
+  .export = NULL,
+  .noexport = NULL,
+  .verbose = FALSE
+)
 
 e1 \%:\% e2
 
@@ -71,7 +81,7 @@ to take more than two arguments.}
 \item{.maxcombine}{maximum number of arguments to pass to the combine function.
 This is only relevant if \code{.multicombine} is \code{TRUE}.}
 
-\item{.errorhandling}{specifies how a task evalution error should be handled.
+\item{.errorhandling}{specifies how a task evaluation error should be handled.
 If the value is "stop", then execution will be stopped via
 the \code{stop} function if an error occurs.
 If the value is "remove", the result for that task will not be
@@ -85,7 +95,7 @@ The default value is "stop".}
 \item{.packages}{character vector of packages that the tasks depend on.
 If \code{ex} requires a \code{R} package to be loaded, this option
 can be used to load that package on each of the workers.
-Ignored when used with \code{\%do\%}.}
+Ignored when used with \verb{\%do\%}.}
 
 \item{.export}{character vector of variables to export.
 This can be useful when accessing a variable that isn't defined in the
@@ -114,27 +124,27 @@ of \code{ex}.}
 \item{n}{number of times to evaluate the \code{R} expression.}
 }
 \description{
-\code{\%do\%} and \code{\%dopar\%} are binary operators that operate
+\verb{\%do\%} and \verb{\%dopar\%} are binary operators that operate
 on a \code{foreach} object and an \code{R} expression.
 The expression, \code{ex}, is evaluated multiple times in an environment
 that is created by the \code{foreach} object, and that environment is
 modified for each evaluation as specified by the \code{foreach} object.
-\code{\%do\%} evaluates the expression sequentially, while \code{\%dopar\%}
+\verb{\%do\%} evaluates the expression sequentially, while \verb{\%dopar\%}
 evaluates it in parallel.
 The results of evaluating \code{ex} are returned as a list by default,
 but this can be modified by means of the \code{.combine} argument.
 }
 \details{
-The \code{foreach} and \code{\%do\%}/\code{\%dopar\%} operators provide
+The \code{foreach} and \verb{\%do\%}/\verb{\%dopar\%} operators provide
 a looping construct that can be viewed as a hybrid of the standard
 \code{for} loop and \code{lapply} function.
 It looks similar to the \code{for} loop, and it evaluates an expression,
 rather than a function (as in \code{lapply}), but its purpose is to
 return a value (a list, by default), rather than to cause side-effects.
-This faciliates parallelization, but looks more natural to people that
+This facilitates parallelization, but looks more natural to people that
 prefer \code{for} loops to \code{lapply}.
 
-The \code{\%:\%} operator is the \emph{nesting} operator, used for creating
+The \verb{\%:\%} operator is the \emph{nesting} operator, used for creating
 nested foreach loops. Type \code{vignette("nested")} at the R prompt for
 more details.
 

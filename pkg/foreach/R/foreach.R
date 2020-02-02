@@ -65,7 +65,7 @@
 #'    to take more than two arguments.
 #' @param .maxcombine maximum number of arguments to pass to the combine function.
 #'    This is only relevant if `.multicombine` is `TRUE`.
-#' @param .errorhandling specifies how a task evalution error should be handled.
+#' @param .errorhandling specifies how a task evaluation error should be handled.
 #'    If the value is "stop", then execution will be stopped via
 #'    the `stop` function if an error occurs.
 #'    If the value is "remove", the result for that task will not be
@@ -104,7 +104,7 @@
 #' It looks similar to the `for` loop, and it evaluates an expression,
 #' rather than a function (as in `lapply`), but its purpose is to
 #' return a value (a list, by default), rather than to cause side-effects.
-#' This faciliates parallelization, but looks more natural to people that
+#' This facilitates parallelization, but looks more natural to people that
 #' prefer `for` loops to `lapply`.
 #'
 #' The `%:%` operator is the _nesting_ operator, used for creating

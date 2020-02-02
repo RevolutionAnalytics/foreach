@@ -19,8 +19,8 @@ flexible way.
 Further information is available in the following help topics:
 \tabular{ll}{
 \code{foreach} \tab Specify the variables to iterate over\cr
-\code{\%do\%} \tab Execute the R expression sequentially\cr
-\code{\%dopar\%} \tab Execute the R expression using the currently registered backend
+\verb{\%do\%} \tab Execute the R expression sequentially\cr
+\verb{\%dopar\%} \tab Execute the R expression using the currently registered backend
 }
 
 To see a tutorial introduction to the foreach package,
