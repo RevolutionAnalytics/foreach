@@ -42,7 +42,7 @@ use \code{library(help="foreach")}.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/RevolutionAnalytics/foreach/pkg/foreach}
+  \item \url{https://github.com/RevolutionAnalytics/foreach}
   \item Report bugs at \url{https://github.com/RevolutionAnalytics/foreach/issues}
 }
 
