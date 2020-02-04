@@ -18,6 +18,6 @@ been registered.
 registerDoSEQ()
 }
 \seealso{
-\code{\link[doSNOW:registerDoSNOW]{doSNOW::registerDoSNOW}}
+\code{\link[doParallel:registerDoParallel]{doParallel::registerDoParallel}}
 }
 \keyword{utilities}

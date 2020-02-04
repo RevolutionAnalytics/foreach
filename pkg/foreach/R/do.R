@@ -27,7 +27,7 @@ NULL
 #' been registered.
 #'
 #' @seealso
-#' [`doSNOW::registerDoSNOW`]
+#' [`doParallel::registerDoParallel`]
 #' @examples
 #' # specify that %dopar% should run sequentially
 #' registerDoSEQ()
