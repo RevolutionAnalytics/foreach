@@ -10,7 +10,7 @@
 |collate  |C.UTF-8                      |
 |ctype    |C.UTF-8                      |
 |tz       |Etc/UTC                      |
-|date     |2020-01-27                   |
+|date     |2020-02-07                   |
 
 # Dependencies
 
@@ -21,18 +21,11 @@
 
 # Revdeps
 
-## Failed to check (4)
+## Failed to check (3)
 
 |package |version |error |warning |note |
 |:-------|:-------|:-----|:-------|:----|
 |CHRONOS |1.12.0  |1     |        |     |
-|odpc    |2.0.1   |1     |        |     |
 |permGPU |0.14.9  |1     |        |     |
 |survSNP |0.24    |1     |        |     |
-
-## New problems (1)
-
-|package                          |version |error  |warning |note |
-|:--------------------------------|:-------|:------|:-------|:----|
-|[DepecheR](problems.md#depecher) |1.0.3   |__+1__ |        |2    |
 

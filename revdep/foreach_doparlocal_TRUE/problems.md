@@ -1,3 +1,63 @@
+# DepecheR
+
+<details>
+
+* Version: 1.0.3
+* Source code: https://github.com/cran/DepecheR
+* Date/Publication: 2019-06-28
+* Number of recursive dependencies: 99
+
+Run `revdep_details(,"DepecheR")` for more info
+
+</details>
+
+## Newly broken
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 13 lines of output:
+        |===============================================================       |  90%
+        |                                                                            
+        |======================================================================| 100%
+      ── 1. Error: (unknown) (@test_sPLSDA.R#28)  ────────────────────────────────────
+      'newdata' must include all the variables of 'object$X'
+      Backtrace:
+       1. DepecheR::dSplsda(...)
+       3. mixOmics:::predict.mixo_spls(...)
+      
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      [ OK: 23 | SKIPPED: 0 | WARNINGS: 0 | FAILED: 1 ]
+      1. Error: (unknown) (@test_sPLSDA.R#28) 
+      
+      Error: testthat unit tests failed
+      Execution halted
+    ```
+
+## In both
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespace in Imports field not imported from: ‘BiocParallel’
+      All declared Imports should be used.
+    ```
+
+*   checking compiled code ... NOTE
+    ```
+    File ‘DepecheR/libs/DepecheR.so’:
+      Found ‘rand’, possibly from ‘rand’ (C)
+        Object: ‘Clusterer.o’
+      Found ‘srand’, possibly from ‘srand’ (C)
+        Objects: ‘Clusterer.o’, ‘InterfaceUtils.o’
+    
+    Compiled code should not call entry points which might terminate R nor
+    write to stdout/stderr instead of to the console, nor use Fortran I/O
+    nor system RNGs.
+    
+    See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
+    ```
+
 # MineICA
 
 <details>
@@ -36,6 +96,25 @@ Run `revdep_details(,"MineICA")` for more info
     FastICA iteration 3
     Error in solve.default(t(W) %*% W) : 'a' is 0-diml
     Calls: clusterFastICARuns -> solve -> solve.default
+    Execution halted
+    ```
+
+*   checking running R code from vignettes ...
+    ```
+      ‘MineICA.Rnw’... failed
+     ERROR
+    Errors in running code in vignettes:
+    when running code in ‘MineICA.Rnw’
+      ...
+    > resPath(params)
+    [1] "mainz/"
+    
+    > resW <- writeProjByComp(icaSet = icaSetMainz, params = params, 
+    +     mart = mart, level = "genes", selCutoffWrite = 2.5)
+    
+      When sourcing ‘MineICA.R’:
+    Error: task 1 failed - "The query to the BioMart webservice returned an invalid result: biomaRt expected a character string of length 1. 
+    Please report this on the support site at http://support.bioconductor.org"
     Execution halted
     ```
 

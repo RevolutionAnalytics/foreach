@@ -16,24 +16,6 @@ Run `revdep_details(,"CHRONOS")` for more info
 *   R CMD check timed out
     
 
-# odpc
-
-<details>
-
-* Version: 2.0.1
-* Source code: https://github.com/cran/odpc
-* Date/Publication: 2019-03-15 15:00:03 UTC
-* Number of recursive dependencies: 68
-
-Run `revdep_details(,"odpc")` for more info
-
-</details>
-
-## In both
-
-*   R CMD check timed out
-    
-
 # permGPU
 
 <details>
