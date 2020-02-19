@@ -40,7 +40,7 @@ get_revdep_list <- function(cmd_args)
         head(top*nrow(.))
 
     pkglist <- c(cran_revdeps$package, bioc_revdeps$Package)
-    cat(pkglist, "\n", file="../../revdep/pkglist.txt")
+    cat(pkglist, "\n", file="revdep/pkglist.txt")
     if(is.infinite(top))
         NA
     else pkglist
@@ -48,7 +48,7 @@ get_revdep_list <- function(cmd_args)
 
 check_and_save <- function(pkglist, local_opt)
 {
-    destpath <- paste0("../../revdep/foreach_doparlocal_", local_opt)
+    destpath <- paste0("revdep/foreach_doparlocal_", local_opt)
     if(dir.exists(destpath))
         unlink(destpath, recursive=TRUE)
     dir.create(destpath, recursive=TRUE)
@@ -79,7 +79,7 @@ check_and_save <- function(pkglist, local_opt)
     invisible(local_opt)
 }
 
-if(!dir.exists("../../revdep")) dir.create("../../revdep")
+if(!dir.exists("revdep")) dir.create("revdep")
 
 today <- Sys.Date()
 fromdate <- strftime(today - 91, "%Y-%m-%d")
