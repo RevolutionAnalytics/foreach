@@ -1,3 +1,4 @@
 ^revdep
 ^\.vscode
 misc
+^azure-pipelines.yml$
