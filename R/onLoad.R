@@ -17,7 +17,7 @@
 .foreachGlobals <- new.env(parent=emptyenv())
 
 .onLoad <- function(libname, pkgname) {
-  local <- as.logical(Sys.getenv("R_FOREACH_DOPAR_LOCAL", "FALSE"))
+  local <- as.logical(Sys.getenv("R_FOREACH_DOPAR_LOCAL", "TRUE"))
   local <- getOption("foreachDoparLocal", local)
   options(foreachDoparLocal=local)
   invisible(NULL)
