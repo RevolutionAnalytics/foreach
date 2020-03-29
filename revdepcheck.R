@@ -62,7 +62,7 @@ check_and_save <- function(pkglist, local_opt)
     else revdep_add(packages=pkglist)
 
     revdep_check(
-        num_workers=12,
+        num_workers=max(1, parallel::detectCores() - 2),
         timeout=as.difftime(30, units="mins"),
         env=c(revdep_env_vars(), R_FOREACH_DOPAR_LOCAL=as.character(local_opt))
     )
