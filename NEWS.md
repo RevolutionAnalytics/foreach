@@ -1,6 +1,6 @@
 ## 1.5.0 (2020-03-29)
 
-Changed the default value for the `foreachDoparLocal` system option to TRUE.
+- Changed the default value for the `foreachDoparLocal` system option to TRUE.
 
 ## 1.4.8 (2020-02-04)
 
