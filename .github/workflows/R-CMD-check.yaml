@@ -49,13 +49,11 @@ jobs:
       - name: Install dependencies
         run: Rscript -e "install.packages('remotes')" -e "remotes::install_deps(dependencies = TRUE)" -e "remotes::install_cran('rcmdcheck')"
 
-      - name: Ignore suggests on Windows
-        if: runner.os == 'Windows'
+      - name: Check without suggests
+        run: |
+          env _R_CHECK_FORCE_SUGGESTS_=FALSE
+          Rscript -e "rcmdcheck::rcmdcheck(args = '--no-manual', error_on = 'warning', check_dir = 'check')"
         shell: bash
-        run: env _R_CHECK_FORCE_SUGGESTS_=FALSE
-
-      - name: Check
-        run: Rscript -e "rcmdcheck::rcmdcheck(args = '--no-manual', error_on = 'warning', check_dir = 'check')"
 
       - name: Upload check results
         if: failure()
