@@ -51,7 +51,7 @@ jobs:
 
       - name: Check without suggests
         run: |
-          Rscript -e "Sys.setenv(`_R_CHECK_FORCE_SUGGESTS_`='FALSE'); rcmdcheck::rcmdcheck(args = '--no-manual', error_on = 'warning', check_dir = 'check')"
+          Rscript -e "Sys.setenv('_R_CHECK_FORCE_SUGGESTS_'='FALSE'); rcmdcheck::rcmdcheck(args = '--no-manual', error_on = 'warning', check_dir = 'check')"
 
       - name: Upload check results
         if: failure()
