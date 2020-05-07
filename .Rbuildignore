@@ -3,3 +3,4 @@
 misc
 ^azure-pipelines.yml$
 ^\.github
+LICENSE
