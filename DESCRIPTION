@@ -1,8 +1,8 @@
 Package: foreach
 Type: Package
 Title: Provides Foreach Looping Construct
-Version: 1.5.0
-Authors@R: c(person("Hong", "Ooi", role="cre", email="hongooi@microsoft.com"),
+Version: 1.5.1
+Authors@R: c(person("Michelle", "Wallig", role="cre", email="Michelle.Wallig@microsoft.com"),
              person("Microsoft", role=c("aut", "cph")),
              person("Steve", "Weston", role="aut"))
 Description: Support for the foreach looping construct.  Foreach is an
