@@ -48,12 +48,18 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Hong Ooi \email{hongooi@microsoft.com}
+\strong{Maintainer}: Michelle Wallig \email{Michelle.Wallig@microsoft.com}
 
 Authors:
 \itemize{
   \item Microsoft [copyright holder]
   \item Steve Weston
+}
+
+Other contributors:
+\itemize{
+  \item Hong Ooi [contributor]
+  \item Rich Calaway [contributor]
 }
 
 }
