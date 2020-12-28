@@ -24,11 +24,21 @@
 #' @param fun A function that implements the functionality of `%dopar%`.
 #' @param data Data to be passed to the registered function.
 #' @param info Function that retrieves information about the backend.
+#' @return (invisible) The previously registered `DoSeq` settings.
 #' @seealso
-#' [`%dopar%`]
+#' [`%do%`]
 #' @keywords utilities
 #' @export
 setDoSeq <- function(fun, data=NULL, info=function(data, item) NULL) {
+  if (inherits(fun, "DoSeq")) {
+    doseq <- fun
+    fun  <- doseq$fun
+    info <- doseq$info
+    data <- doseq$data
+  }
+
+  doseq <- getDoSeq()
+  
   tryCatch(
     {
        assign('seqFun', fun, pos=.foreachGlobals, inherits=FALSE)
@@ -43,5 +53,7 @@ setDoSeq <- function(fun, data=NULL, info=function(data, item) NULL) {
   remove('info', envir = .foreachGlobals)
          e
   })
+
+  invisible(doseq)
 }
 
