@@ -88,7 +88,7 @@ getDoSeqVersion <- function() {
 # used internally to get the currently registered parallel backend
 getDoSeq <- function() {
   if (exists('seqFun', where=.foreachGlobals, inherits=FALSE)) {
-    list(fun=.foreachGlobals$seqFun, data=.foreachGlobals$seqdata)
+    list(fun=.foreachGlobals$seqFun, data=.foreachGlobals$seqData)
   } else {
     list(fun=doSEQ, data=NULL)
   }
