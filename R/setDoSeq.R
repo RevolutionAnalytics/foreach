@@ -35,12 +35,12 @@ setDoSeq <- function(fun, data=NULL, info=function(data, item) NULL) {
        assign('seqData', data, pos=.foreachGlobals, inherits=FALSE)
        assign('seqInfo', info, pos=.foreachGlobals, inherits=FALSE)
     }, error = function(e) {
-         if (exists('fun', where=.foreachGlobals, inherits=FALSE))
-  remove('fun', envir = .foreachGlobals)
-         if (exists('data', where=.foreachGlobals, inherits=FALSE))
-  remove('data', envir = .foreachGlobals)
-         if (exists('info', where=.foreachGlobals, inherits=FALSE))
-  remove('info', envir = .foreachGlobals)
+         if (exists('seqFun', where=.foreachGlobals, inherits=FALSE))
+  remove('seqFun', envir = .foreachGlobals)
+         if (exists('seqData', where=.foreachGlobals, inherits=FALSE))
+  remove('seqData', envir = .foreachGlobals)
+         if (exists('seqInfo', where=.foreachGlobals, inherits=FALSE))
+  remove('seqInfo', envir = .foreachGlobals)
          e
   })
 }
