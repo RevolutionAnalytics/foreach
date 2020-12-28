@@ -3,7 +3,7 @@ title: Nesting `foreach` loops
 author: Steve Weston
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{nested}
+  %\VignetteIndexEntry{Nesting `foreach` loops}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{utf8}
 ---
