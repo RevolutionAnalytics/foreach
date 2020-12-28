@@ -3,7 +3,7 @@ title: Using the `foreach` package
 author: Steve Weston
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{foreach}
+  %\VignetteIndexEntry{Using the `foreach` package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{utf8}
 ---
