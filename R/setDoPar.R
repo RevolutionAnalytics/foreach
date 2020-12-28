@@ -24,11 +24,21 @@
 #' @param fun A function that implements the functionality of `%dopar%`.
 #' @param data Data to be passed to the registered function.
 #' @param info Function that retrieves information about the backend.
+#' @return (invisible) The previously registered `DoPar` settings.
 #' @seealso
 #' [`%dopar%`]
 #' @keywords utilities
 #' @export
 setDoPar <- function(fun, data=NULL, info=function(data, item) NULL) {
+  if (inherits(fun, "DoPar")) {
+    dopar <- fun
+    fun  <- dopar$fun
+    info <- dopar$info
+    data <- dopar$data
+  }
+
+  dopar <- getDoPar(warn=FALSE)
+  
   tryCatch(
     {
       assign('fun', fun, pos=.foreachGlobals, inherits=FALSE)
@@ -43,5 +53,7 @@ setDoPar <- function(fun, data=NULL, info=function(data, item) NULL) {
     remove('info', envir=.foreachGlobals)
          e
   })
+
+  invisible(dopar)
 }
 

@@ -87,16 +87,22 @@ getDoParVersion <- function() {
 }
 
 # used internally to get the currently registered parallel backend
-getDoPar <- function() {
+getDoPar <- function(warn = TRUE) {
   if (exists('fun', where=.foreachGlobals, inherits=FALSE)) {
-    list(fun=.foreachGlobals$fun, data=.foreachGlobals$data)
+    structure(list(
+      fun=.foreachGlobals$fun,
+      data=.foreachGlobals$data,
+      info=.foreachGlobals$info
+    ), class="DoPar")
   } else {
-    if (!exists('parWarningIssued', where=.foreachGlobals, inherits=FALSE)) {
-      warning('executing %dopar% sequentially: no parallel backend registered',
-              call.=FALSE)
-      assign('parWarningIssued', TRUE, pos=.foreachGlobals, inherits=FALSE)
+    if (warn) {
+      if (!exists('parWarningIssued', where=.foreachGlobals, inherits=FALSE)) {
+        warning('executing %dopar% sequentially: no parallel backend registered',
+                call.=FALSE)
+        assign('parWarningIssued', TRUE, pos=.foreachGlobals, inherits=FALSE)
+      }
     }
-    list(fun=doSEQ, data=NULL)
+    structure(list(fun=doSEQ, data=NULL, info=NULL), class=c("DoPar", "DoSeq"))
   }
 }
 

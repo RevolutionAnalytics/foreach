@@ -13,6 +13,9 @@ setDoSeq(fun, data = NULL, info = function(data, item) NULL)
 
 \item{info}{Function that retrieves information about the backend.}
 }
+\value{
+(invisible) The previously registered \code{DoSeq} settings.
+}
 \description{
 The \code{setDoSeq} function is used to register a sequential backend with the
 foreach package.  This isn't normally executed by the user.  Instead, packages

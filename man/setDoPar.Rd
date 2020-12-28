@@ -13,6 +13,9 @@ setDoPar(fun, data = NULL, info = function(data, item) NULL)
 
 \item{info}{Function that retrieves information about the backend.}
 }
+\value{
+(invisible) The previously registered \code{DoPar} settings.
+}
 \description{
 The \code{setDoPar} function is used to register a parallel backend with the
 foreach package.  This isn't normally executed by the user.  Instead, packages
