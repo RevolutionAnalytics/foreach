@@ -1,3 +1,7 @@
+## 1.5.2 (2022-01-10)
+
+- Maintainer change (Folashade Daniel; fdaniel@microsoft.com)
+
 ## 1.5.1 (2020-10-12)
 
 - Maintainer change (Michelle Wallig; Michelle.Wallig@microsoft.com)
