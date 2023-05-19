@@ -248,7 +248,7 @@ foreach <- function(..., .combine, .init, .final=NULL, .inorder=TRUE,
     # put the specified options objects into the options list
     for (i in opts) {
       bname <- substr(argnames[i], 10, 100)
-      options[[bname]] <- list(...)[[i]]
+      options[[bname]] <- eval.parent(args[[i]])
     }
 
     # remove the specified options objects from args and argnames
