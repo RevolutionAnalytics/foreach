@@ -100,12 +100,12 @@ Ignored when used with \verb{\%do\%}.}
 \item{.export}{character vector of variables to export.
 This can be useful when accessing a variable that isn't defined in the
 current environment.
-The default value in \code{NULL}.}
+The default value is \code{NULL}.}
 
 \item{.noexport}{character vector of variables to exclude from exporting.
 This can be useful to prevent variables from being exported that aren't
 actually needed, perhaps because the symbol is used in a model formula.
-The default value in \code{NULL}.}
+The default value is \code{NULL}.}
 
 \item{.verbose}{logical flag enabling verbose messages.  This can be
 very useful for trouble shooting.}
